@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1540483595 source:c:\avr\exhibition\exhibition1\main.c
+	<time.h>
+	<iom128v.h>
+	<macros.h>
+	"graphic.h"
+	"t6963c.h"
+
+1539935651 c:\avr\exhibition\exhibition1\graphic.h
+
+1539935629 c:\avr\exhibition\exhibition1\t6963c.h
+	<stdint.h>
+	<stdio.h>
+	<time.h>
+	<math.h>
+
