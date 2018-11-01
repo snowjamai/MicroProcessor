@@ -1,0 +1,1875 @@
+NOTE: Code bytes are displayed in order matching the disassembly format in AVR documentation.
+  For example, 'CALL 2B16' (example only, only labels should normally be used) is displayed as
+  0x940E2B16 rather than in little endian byte order.
+
+Interrupt Vectors
+
+Program Code (text area)
+_GLCD_Rectangle:
+  j                    --> R10
+  a                    --> R20
+  b                    --> R22
+  y                    --> R14
+  x                    --> R12
+    000A1 940E 05CD CALL	push_xgsetF0FC
+    000A3 2EE2      MOV	R14,R18
+    000A4 2EC0      MOV	R12,R16
+    000A5 9721      SBIW	R28,1
+    000A6 856B      LDD	R22,Y+11
+    000A7 854D      LDD	R20,Y+13
+FILE: C:\avr\exhibition\exhibition1\graphic.h
+(0001) extern void GLCD_SetPixel(char x, char y, char color);
+(0002) 
+(0003) const unsigned char color = 1;
+(0004) 
+(0005) 
+(0006) void GLCD_Rectangle(unsigned char x, unsigned char y, unsigned char b, unsigned char a)
+(0007) {
+(0008) 	unsigned char j;
+(0009) 
+(0010) 	for (j = 0; j < a; j++) {
+    000A8 24AA      CLR	R10
+    000A9 C011      RJMP	0x00BB
+(0011) 		GLCD_SetPixel(x, y + j, color);
+    000AA 9020 0100 LDS	R2,_color
+    000AC 8228      ST	Y,R2
+    000AD 2D2E      MOV	R18,R14
+    000AE 0D2A      ADD	R18,R10
+    000AF 2D0C      MOV	R16,R12
+    000B0 D238      RCALL	_GLCD_SetPixel
+(0012) 		GLCD_SetPixel(x + b - 1, y + j, color);
+    000B1 9020 0100 LDS	R2,_color
+    000B3 8228      ST	Y,R2
+    000B4 2D2E      MOV	R18,R14
+    000B5 0D2A      ADD	R18,R10
+    000B6 2D0C      MOV	R16,R12
+    000B7 0F06      ADD	R16,R22
+    000B8 5001      SUBI	R16,1
+    000B9 D22F      RCALL	_GLCD_SetPixel
+    000BA 94A3      INC	R10
+    000BB 16A4      CP	R10,R20
+    000BC F368      BCS	0x00AA
+(0013) 	}
+(0014) 
+(0015) 	for (j = 0; j < b; j++)	{
+    000BD 24AA      CLR	R10
+    000BE C011      RJMP	0x00D0
+(0016) 		GLCD_SetPixel(x + j, y, color);
+    000BF 9020 0100 LDS	R2,_color
+    000C1 8228      ST	Y,R2
+    000C2 2D2E      MOV	R18,R14
+    000C3 2D0C      MOV	R16,R12
+    000C4 0D0A      ADD	R16,R10
+    000C5 D223      RCALL	_GLCD_SetPixel
+(0017) 		GLCD_SetPixel(x + j, y + a - 1, color);
+    000C6 9020 0100 LDS	R2,_color
+    000C8 8228      ST	Y,R2
+    000C9 2D2E      MOV	R18,R14
+    000CA 0F24      ADD	R18,R20
+    000CB 5021      SUBI	R18,1
+    000CC 2D0C      MOV	R16,R12
+    000CD 0D0A      ADD	R16,R10
+    000CE D21A      RCALL	_GLCD_SetPixel
+    000CF 94A3      INC	R10
+    000D0 16A6      CP	R10,R22
+    000D1 F368      BCS	0x00BF
+    000D2 9621      ADIW	R28,1
+    000D3 940C 05C2 JMP	pop_xgsetF0FC
+    000D5 9508      RET
+(0018) 	}
+(0019) }
+_GLCD_Circle:
+  ychange              --> R12
+  xchange              --> R14
+  radiusError          --> R10
+  x                    --> R20
+  y                    --> R22
+  radius               --> R10
+  cy                   --> Y,+13
+  cx                   --> Y,+11
+    000D6 940E 0567 CALL	<LIBRARY>|push_arg4
+    000D8 940E 05CD CALL	push_xgsetF0FC
+    000DA 9721      SBIW	R28,1
+    000DB 84AF      LDD	R10,Y+15
+(0020) 
+(0021) 
+(0022) void GLCD_Circle(unsigned char cx, unsigned char cy, unsigned char radius)
+(0023) {
+(0024) 	int x, y, xchange, ychange, radiusError;
+(0025) 	x = radius;
+    000DC 2D4A      MOV	R20,R10
+    000DD 2755      CLR	R21
+(0026) 	y = 0;
+    000DE 2766      CLR	R22
+    000DF 2777      CLR	R23
+(0027) 	xchange = 1 - 2 * radius;
+    000E0 2C2A      MOV	R2,R10
+    000E1 2433      CLR	R3
+    000E2 0C22      LSL	R2
+    000E3 1C33      ROL	R3
+    000E4 E081      LDI	R24,1
+    000E5 E090      LDI	R25,0
+    000E6 017C      MOVW	R14,R24
+    000E7 18E2      SUB	R14,R2
+    000E8 08F3      SBC	R15,R3
+(0028) 	ychange = 1;
+    000E9 016C      MOVW	R12,R24
+(0029) 	radiusError = 0;
+    000EA 24AA      CLR	R10
+    000EB 24BB      CLR	R11
+    000EC C058      RJMP	0x0145
+(0030) 	while (x >= y)
+(0031) 	{
+(0032) 		GLCD_SetPixel(cx + x, cy + y, color);
+    000ED 9020 0100 LDS	R2,_color
+    000EF 8228      ST	Y,R2
+    000F0 852D      LDD	R18,Y+13
+    000F1 0F26      ADD	R18,R22
+    000F2 850B      LDD	R16,Y+11
+    000F3 0F04      ADD	R16,R20
+    000F4 D1F4      RCALL	_GLCD_SetPixel
+(0033) 		GLCD_SetPixel(cx - x, cy + y, color);
+    000F5 9020 0100 LDS	R2,_color
+    000F7 8228      ST	Y,R2
+    000F8 852D      LDD	R18,Y+13
+    000F9 0F26      ADD	R18,R22
+    000FA 850B      LDD	R16,Y+11
+    000FB 1B04      SUB	R16,R20
+    000FC D1EC      RCALL	_GLCD_SetPixel
+(0034) 		GLCD_SetPixel(cx - x, cy - y, color);
+    000FD 9020 0100 LDS	R2,_color
+    000FF 8228      ST	Y,R2
+    00100 852D      LDD	R18,Y+13
+    00101 1B26      SUB	R18,R22
+    00102 850B      LDD	R16,Y+11
+    00103 1B04      SUB	R16,R20
+    00104 D1E4      RCALL	_GLCD_SetPixel
+(0035) 		GLCD_SetPixel(cx + x, cy - y, color);
+    00105 9020 0100 LDS	R2,_color
+    00107 8228      ST	Y,R2
+    00108 852D      LDD	R18,Y+13
+    00109 1B26      SUB	R18,R22
+    0010A 850B      LDD	R16,Y+11
+    0010B 0F04      ADD	R16,R20
+    0010C D1DC      RCALL	_GLCD_SetPixel
+(0036) 		GLCD_SetPixel(cx + y, cy + x, color);
+    0010D 9020 0100 LDS	R2,_color
+    0010F 8228      ST	Y,R2
+    00110 852D      LDD	R18,Y+13
+    00111 0F24      ADD	R18,R20
+    00112 850B      LDD	R16,Y+11
+    00113 0F06      ADD	R16,R22
+    00114 D1D4      RCALL	_GLCD_SetPixel
+(0037) 		GLCD_SetPixel(cx - y, cy + x, color);
+    00115 9020 0100 LDS	R2,_color
+    00117 8228      ST	Y,R2
+    00118 852D      LDD	R18,Y+13
+    00119 0F24      ADD	R18,R20
+    0011A 850B      LDD	R16,Y+11
+    0011B 1B06      SUB	R16,R22
+    0011C D1CC      RCALL	_GLCD_SetPixel
+(0038) 		GLCD_SetPixel(cx - y, cy - x, color);
+    0011D 9020 0100 LDS	R2,_color
+    0011F 8228      ST	Y,R2
+    00120 852D      LDD	R18,Y+13
+    00121 1B24      SUB	R18,R20
+    00122 850B      LDD	R16,Y+11
+    00123 1B06      SUB	R16,R22
+    00124 D1C4      RCALL	_GLCD_SetPixel
+(0039) 		GLCD_SetPixel(cx + y, cy - x, color);
+    00125 9020 0100 LDS	R2,_color
+    00127 8228      ST	Y,R2
+    00128 852D      LDD	R18,Y+13
+    00129 1B24      SUB	R18,R20
+    0012A 850B      LDD	R16,Y+11
+    0012B 0F06      ADD	R16,R22
+    0012C D1BC      RCALL	_GLCD_SetPixel
+(0040) 		y++;
+    0012D 5F6F      SUBI	R22,0xFF
+    0012E 4F7F      SBCI	R23,0xFF
+(0041) 		radiusError += ychange;
+    0012F 0CAC      ADD	R10,R12
+    00130 1CBD      ADC	R11,R13
+(0042) 		ychange += 2;
+    00131 01C6      MOVW	R24,R12
+    00132 9602      ADIW	R24,2
+    00133 016C      MOVW	R12,R24
+(0043) 		if (2 * radiusError + xchange > 0)
+    00134 0115      MOVW	R2,R10
+    00135 0C22      LSL	R2
+    00136 1C33      ROL	R3
+    00137 0C2E      ADD	R2,R14
+    00138 1C3F      ADC	R3,R15
+    00139 2444      CLR	R4
+    0013A 2455      CLR	R5
+    0013B 1442      CP	R4,R2
+    0013C 0453      CPC	R5,R3
+    0013D F43C      BGE	0x0145
+(0044) 		{
+(0045) 			x--;
+    0013E 5041      SUBI	R20,1
+    0013F 4050      SBCI	R21,0
+(0046) 			radiusError += xchange;
+    00140 0CAE      ADD	R10,R14
+    00141 1CBF      ADC	R11,R15
+(0047) 			xchange += 2;
+    00142 01C7      MOVW	R24,R14
+    00143 9602      ADIW	R24,2
+    00144 017C      MOVW	R14,R24
+    00145 1746      CP	R20,R22
+    00146 0757      CPC	R21,R23
+    00147 F00C      BLT	0x0149
+    00148 CFA4      RJMP	0x00ED
+    00149 9621      ADIW	R28,1
+    0014A 940E 05C2 CALL	pop_xgsetF0FC
+    0014C 9624      ADIW	R28,4
+    0014D 9508      RET
+(0048) 		}
+(0049) 	}
+(0050) }
+_GLCD_Line:
+  Yinc                 --> R22
+  Xinc                 --> R20
+  TwoDy                --> Y,+7
+  TwoDx                --> Y,+5
+  TwoDyAccumulatedError --> R14
+  TwoDxAccumulatedError --> R14
+  Dy                   --> Y,+3
+  Dx                   --> Y,+1
+  CurrentY             --> R12
+  CurrentX             --> R10
+  Y2                   --> Y,+25
+  X2                   --> Y,+23
+  Y1                   --> R14
+  X1                   --> Y,+19
+    0014E 940E 0567 CALL	<LIBRARY>|push_arg4
+    00150 940E 05CD CALL	push_xgsetF0FC
+    00152 0179      MOVW	R14,R18
+    00153 9729      SBIW	R28,0x9
+(0051) 
+(0052) 
+(0053) void GLCD_Line(int X1, int Y1, int X2, int Y2)
+(0054) {
+(0055) 	int CurrentX, CurrentY, Xinc, Yinc,
+(0056) 		Dx, Dy, TwoDx, TwoDy,
+(0057) 		TwoDxAccumulatedError, TwoDyAccumulatedError;
+(0058) 
+(0059) 	Dx = (X2 - X1);
+    00154 882F      LDD	R2,Y+23
+    00155 8C38      LDD	R3,Y+24
+    00156 880B      LDD	R0,Y+19
+    00157 881C      LDD	R1,Y+20
+    00158 1820      SUB	R2,R0
+    00159 0831      SBC	R3,R1
+    0015A 823A      STD	Y+2,R3
+    0015B 8229      STD	Y+1,R2
+(0060) 	Dy = (Y2 - Y1);
+    0015C 8C29      LDD	R2,Y+25
+    0015D 8C3A      LDD	R3,Y+26
+    0015E 182E      SUB	R2,R14
+    0015F 083F      SBC	R3,R15
+    00160 823C      STD	Y+4,R3
+    00161 822B      STD	Y+3,R2
+(0061) 
+(0062) 	TwoDx = Dx + Dx;
+    00162 8029      LDD	R2,Y+1
+    00163 803A      LDD	R3,Y+2
+    00164 0101      MOVW	R0,R2
+    00165 0C20      ADD	R2,R0
+    00166 1C31      ADC	R3,R1
+    00167 823E      STD	Y+6,R3
+    00168 822D      STD	Y+5,R2
+(0063) 	TwoDy = Dy + Dy;
+    00169 802B      LDD	R2,Y+3
+    0016A 803C      LDD	R3,Y+4
+    0016B 0101      MOVW	R0,R2
+    0016C 0C20      ADD	R2,R0
+    0016D 1C31      ADC	R3,R1
+    0016E 8638      STD	Y+8,R3
+    0016F 822F      STD	Y+7,R2
+(0064) 
+(0065) 	CurrentX = X1;
+    00170 88AB      LDD	R10,Y+19
+    00171 88BC      LDD	R11,Y+20
+(0066) 	CurrentY = Y1;
+    00172 0167      MOVW	R12,R14
+(0067) 
+(0068) 	Xinc = 1;
+    00173 E041      LDI	R20,1
+    00174 E050      LDI	R21,0
+(0069) 	Yinc = 1;
+    00175 E061      LDI	R22,1
+    00176 E070      LDI	R23,0
+(0070) 
+(0071) 	if (Dx < 0)
+    00177 8189      LDD	R24,Y+1
+    00178 819A      LDD	R25,Y+2
+    00179 3080      CPI	R24,0
+    0017A E0E0      LDI	R30,0
+    0017B 079E      CPC	R25,R30
+    0017C F484      BGE	0x018D
+(0072) 	{
+(0073) 		Xinc = -1;
+    0017D EF4F      LDI	R20,0xFF
+    0017E EF5F      LDI	R21,0xFF
+(0074) 		Dx = -Dx;
+    0017F 9580      COM	R24
+    00180 9590      COM	R25
+    00181 5F8F      SUBI	R24,0xFF
+    00182 4F9F      SBCI	R25,0xFF
+    00183 839A      STD	Y+2,R25
+    00184 8389      STD	Y+1,R24
+(0075) 		TwoDx = -TwoDx;
+    00185 818D      LDD	R24,Y+5
+    00186 819E      LDD	R25,Y+6
+    00187 9580      COM	R24
+    00188 9590      COM	R25
+    00189 5F8F      SUBI	R24,0xFF
+    0018A 4F9F      SBCI	R25,0xFF
+    0018B 839E      STD	Y+6,R25
+    0018C 838D      STD	Y+5,R24
+(0076) 	}
+(0077) 
+(0078) 	if (Dy < 0)
+    0018D 818B      LDD	R24,Y+3
+    0018E 819C      LDD	R25,Y+4
+    0018F 3080      CPI	R24,0
+    00190 E0E0      LDI	R30,0
+    00191 079E      CPC	R25,R30
+    00192 F484      BGE	0x01A3
+(0079) 	{
+(0080) 		Yinc = -1;
+    00193 EF6F      LDI	R22,0xFF
+    00194 EF7F      LDI	R23,0xFF
+(0081) 		Dy = -Dy;
+    00195 9580      COM	R24
+    00196 9590      COM	R25
+    00197 5F8F      SUBI	R24,0xFF
+    00198 4F9F      SBCI	R25,0xFF
+    00199 839C      STD	Y+4,R25
+    0019A 838B      STD	Y+3,R24
+(0082) 		TwoDy = -TwoDy;
+    0019B 818F      LDD	R24,Y+7
+    0019C 8598      LDD	R25,Y+8
+    0019D 9580      COM	R24
+    0019E 9590      COM	R25
+    0019F 5F8F      SUBI	R24,0xFF
+    001A0 4F9F      SBCI	R25,0xFF
+    001A1 8798      STD	Y+8,R25
+    001A2 838F      STD	Y+7,R24
+(0083) 	}
+(0084) 
+(0085) 	GLCD_SetPixel(X1, Y1, color);
+    001A3 9020 0100 LDS	R2,_color
+    001A5 8228      ST	Y,R2
+    001A6 2D2E      MOV	R18,R14
+    001A7 890B      LDD	R16,Y+19
+    001A8 D140      RCALL	_GLCD_SetPixel
+(0086) 
+(0087) 	if ((Dx != 0) || (Dy != 0))
+    001A9 8009      LDD	R0,Y+1
+    001AA 801A      LDD	R1,Y+2
+    001AB 2000      TST	R0
+    001AC F449      BNE	0x01B6
+    001AD 2011      TST	R1
+    001AE F439      BNE	0x01B6
+    001AF 800B      LDD	R0,Y+3
+    001B0 801C      LDD	R1,Y+4
+    001B1 2000      TST	R0
+    001B2 F419      BNE	0x01B6
+    001B3 2011      TST	R1
+    001B4 F409      BNE	0x01B6
+    001B5 C044      RJMP	0x01FA
+(0088) 	{
+(0089) 
+(0090) 		if (Dy <= Dx)
+    001B6 8009      LDD	R0,Y+1
+    001B7 801A      LDD	R1,Y+2
+    001B8 810B      LDD	R16,Y+3
+    001B9 811C      LDD	R17,Y+4
+    001BA 1600      CP	R0,R16
+    001BB 0611      CPC	R1,R17
+    001BC F0FC      BLT	0x01DC
+(0091) 		{
+(0092) 			TwoDxAccumulatedError = 0;
+    001BD 24EE      CLR	R14
+    001BE 24FF      CLR	R15
+(0093) 			do
+(0094) 			{
+(0095) 				CurrentX += Xinc;
+    001BF 0EA4      ADD	R10,R20
+    001C0 1EB5      ADC	R11,R21
+(0096) 				TwoDxAccumulatedError += TwoDy;
+    001C1 800F      LDD	R0,Y+7
+    001C2 8418      LDD	R1,Y+8
+    001C3 0CE0      ADD	R14,R0
+    001C4 1CF1      ADC	R15,R1
+(0097) 				if (TwoDxAccumulatedError > Dx)
+    001C5 8009      LDD	R0,Y+1
+    001C6 801A      LDD	R1,Y+2
+    001C7 140E      CP	R0,R14
+    001C8 041F      CPC	R1,R15
+    001C9 F434      BGE	0x01D0
+(0098) 				{
+(0099) 					CurrentY += Yinc;
+    001CA 0EC6      ADD	R12,R22
+    001CB 1ED7      ADC	R13,R23
+(0100) 					TwoDxAccumulatedError -= TwoDx;
+    001CC 800D      LDD	R0,Y+5
+    001CD 801E      LDD	R1,Y+6
+    001CE 18E0      SUB	R14,R0
+    001CF 08F1      SBC	R15,R1
+(0101) 				}
+(0102) 				GLCD_SetPixel(CurrentX, CurrentY, color);
+    001D0 9020 0100 LDS	R2,_color
+    001D2 8228      ST	Y,R2
+    001D3 2D2C      MOV	R18,R12
+    001D4 2D0A      MOV	R16,R10
+    001D5 D113      RCALL	_GLCD_SetPixel
+(0103) 			} while (CurrentX != X2);
+    001D6 880F      LDD	R0,Y+23
+    001D7 8C18      LDD	R1,Y+24
+    001D8 14A0      CP	R10,R0
+    001D9 04B1      CPC	R11,R1
+    001DA F721      BNE	0x01BF
+(0104) 		}
+    001DB C01E      RJMP	0x01FA
+(0105) 		else
+(0106) 		{
+(0107) 			TwoDyAccumulatedError = 0;
+    001DC 24EE      CLR	R14
+    001DD 24FF      CLR	R15
+(0108) 			do
+(0109) 			{
+(0110) 				CurrentY += Yinc;
+    001DE 0EC6      ADD	R12,R22
+    001DF 1ED7      ADC	R13,R23
+(0111) 				TwoDyAccumulatedError += TwoDx;
+    001E0 800D      LDD	R0,Y+5
+    001E1 801E      LDD	R1,Y+6
+    001E2 0CE0      ADD	R14,R0
+    001E3 1CF1      ADC	R15,R1
+(0112) 				if (TwoDyAccumulatedError>Dy)
+    001E4 800B      LDD	R0,Y+3
+    001E5 801C      LDD	R1,Y+4
+    001E6 140E      CP	R0,R14
+    001E7 041F      CPC	R1,R15
+    001E8 F434      BGE	0x01EF
+(0113) 				{
+(0114) 					CurrentX += Xinc;
+    001E9 0EA4      ADD	R10,R20
+    001EA 1EB5      ADC	R11,R21
+(0115) 					TwoDyAccumulatedError -= TwoDy;
+    001EB 800F      LDD	R0,Y+7
+    001EC 8418      LDD	R1,Y+8
+    001ED 18E0      SUB	R14,R0
+    001EE 08F1      SBC	R15,R1
+(0116) 				}
+(0117) 				GLCD_SetPixel(CurrentX, CurrentY, color);
+    001EF 9020 0100 LDS	R2,_color
+    001F1 8228      ST	Y,R2
+    001F2 2D2C      MOV	R18,R12
+    001F3 2D0A      MOV	R16,R10
+    001F4 D0F4      RCALL	_GLCD_SetPixel
+(0118) 			} while (CurrentY != Y2);
+    001F5 8C09      LDD	R0,Y+25
+    001F6 8C1A      LDD	R1,Y+26
+    001F7 14C0      CP	R12,R0
+    001F8 04D1      CPC	R13,R1
+    001F9 F721      BNE	0x01DE
+    001FA 9629      ADIW	R28,0x9
+    001FB 940E 05C2 CALL	pop_xgsetF0FC
+    001FD 9624      ADIW	R28,4
+    001FE 9508      RET
+(0119) 		}
+(0120) 	}
+(0121) }
+_delay:
+  i                    --> Y,+0
+    001FF 9721      SBIW	R28,1
+FILE: C:\avr\exhibition\exhibition1\t6963c.h
+(0001) #include <stdint.h>
+(0002) #include <stdio.h>
+(0003) #include <time.h>
+(0004) #include <math.h>
+(0005) 
+(0006) #define F_CPU 16000000UL
+(0007) 
+(0008) // data port
+(0009) #define GLCD_DATA_PORT 	PORTA
+(0010) #define GLCD_DATA_PIN	PINA
+(0011) #define GLCD_DATA_DDR	DDRA
+(0012) // control port
+(0013) #define GLCD_CTRL_PORT	PORTC
+(0014) #define GLCD_CTRL_PIN	PINC
+(0015) #define GLCD_CTRL_DDR	DDRC
+(0016) // control signals
+(0017) #define GLCD_WR			PC0
+(0018) #define GLCD_RD			PC1
+(0019) #define GLCD_CE			PC2
+(0020) #define GLCD_CD			PC3
+(0021) #define GLCD_RESET		PC4
+(0022) #define GLCD_FS			PC5
+(0023) // display properties
+(0024) #define GLCD_NUMBER_OF_LINES				128
+(0025) #define GLCD_PIXELS_PER_LINE				240
+(0026) #define GLCD_FONT_WIDTH						8
+(0027) //
+(0028) #define GLCD_GRAPHIC_AREA					(GLCD_PIXELS_PER_LINE / GLCD_FONT_WIDTH)
+(0029) #define GLCD_TEXT_AREA						(GLCD_PIXELS_PER_LINE / GLCD_FONT_WIDTH)
+(0030) #define GLCD_GRAPHIC_SIZE					(GLCD_GRAPHIC_AREA * GLCD_NUMBER_OF_LINES)
+(0031) #define GLCD_TEXT_SIZE						(GLCD_TEXT_AREA * (GLCD_NUMBER_OF_LINES/8))
+(0032) 
+(0033) 
+(0034) #define GLCD_TEXT_HOME						0
+(0035) #define GLCD_GRAPHIC_HOME					(GLCD_TEXT_HOME + GLCD_TEXT_SIZE)
+(0036) #define GLCD_OFFSET_REGISTER				2
+(0037) #define GLCD_EXTERNAL_CG_HOME				(GLCD_OFFSET_REGISTER << 11)
+(0038) 
+(0039) 
+(0040) #define T6963_SET_CURSOR_POINTER			0x21
+(0041) #define T6963_SET_OFFSET_REGISTER			0x22
+(0042) #define T6963_SET_ADDRESS_POINTER			0x24
+(0043) 
+(0044) #define T6963_SET_TEXT_HOME_ADDRESS			0x40
+(0045) #define T6963_SET_TEXT_AREA					0x41
+(0046) #define T6963_SET_GRAPHIC_HOME_ADDRESS		0x42
+(0047) #define T6963_SET_GRAPHIC_AREA				0x43
+(0048) 
+(0049) #define T6963_MODE_SET						0x80
+(0050) 
+(0051) 
+(0052) #define T6963_DISPLAY_MODE					0x90
+(0053) #define T6963_CURSOR_BLINK_ON		    	0x01
+(0054) #define T6963_CURSOR_DISPLAY_ON	    		0x02
+(0055) #define T6963_TEXT_DISPLAY_ON		    	0x04
+(0056) #define T6963_GRAPHIC_DISPLAY_ON	    	0x08
+(0057) 
+(0058) 
+(0059) #define T6963_CURSOR_PATTERN_SELECT			0xA0
+(0060) #define T6963_CURSOR_1_LINE			    	0x00
+(0061) #define T6963_CURSOR_2_LINE			    	0x01
+(0062) #define T6963_CURSOR_3_LINE			    	0x02
+(0063) #define T6963_CURSOR_4_LINE			    	0x03
+(0064) #define T6963_CURSOR_5_LINE			    	0x04
+(0065) #define T6963_CURSOR_6_LINE			    	0x05
+(0066) #define T6963_CURSOR_7_LINE		    		0x06
+(0067) #define T6963_CURSOR_8_LINE				    0x07
+(0068) 
+(0069) #define T6963_SET_DATA_AUTO_WRITE			0xB0
+(0070) #define T6963_SET_DATA_AUTO_READ			0xB1
+(0071) #define T6963_AUTO_RESET					0xB2
+(0072) 
+(0073) #define T6963_DATA_WRITE_AND_INCREMENT		0xC0
+(0074) #define T6963_DATA_READ_AND_INCREMENT		0xC1
+(0075) #define T6963_DATA_WRITE_AND_DECREMENT		0xC2
+(0076) #define T6963_DATA_READ_AND_DECREMENT		0xC3
+(0077) #define T6963_DATA_WRITE_AND_NONVARIALBE	0xC4
+(0078) #define T6963_DATA_READ_AND_NONVARIABLE		0xC5
+(0079) 
+(0080) #define T6963_SCREEN_PEEK					0xE0
+(0081) #define T6963_SCREEN_COPY					0xE8
+(0082) 
+(0083) 
+(0084) void GLCD_InitializeInterface(void);
+(0085) unsigned char GLCD_CheckStatus(void);
+(0086) void GLCD_WriteCommand(unsigned char);
+(0087) void GLCD_WriteData(unsigned char);
+(0088) unsigned char GLCD_ReadData(void);
+(0089) void GLCD_ClearText(void);
+(0090) void GLCD_ClearCG(void);
+(0091) void GLCD_ClearGraphic(void);
+(0092) void GLCD_WriteChar(char ch);
+(0093) void GLCD_WriteString(char * str);
+(0094) void GLCD_TextGoTo(unsigned char, unsigned char);
+(0095) void GLCD_DefineCharacter(unsigned char, unsigned char *);
+(0096) void GLCD_Initialize(void);
+(0097) void GLCD_SetPixel(unsigned char, unsigned char, unsigned char);
+(0098) void GLCD_WriteDisplayData(unsigned char);
+(0099) 
+(0100) void delay_ms(unsigned int ms);
+(0101) void GLCD_Clear(void);
+(0102) 
+(0103) //-------------------------------------------------------------------------------------------------
+(0104) //
+(0105) // Delay function
+(0106) //
+(0107) //-------------------------------------------------------------------------------------------------
+(0108) void delay(void)
+(0109) {
+(0110) 	volatile unsigned char i;
+(0111) 	for (i = 0; i < (F_CPU / 1000000); i++)
+    00200 2422      CLR	R2
+    00201 8228      ST	Y,R2
+    00202 C004      RJMP	0x0207
+(0112) 	{
+(0113) 		asm("nop");
+    00203 0000      NOP
+    00204 8188      LD	R24,Y
+    00205 5F8F      SUBI	R24,0xFF
+    00206 8388      ST	Y,R24
+    00207 8188      LD	R24,Y
+    00208 3180      CPI	R24,0x10
+    00209 F3C8      BCS	0x0203
+    0020A 9621      ADIW	R28,1
+    0020B 9508      RET
+(0114) 	}
+(0115) }
+(0116) //-------------------------------------------------------------------------------------------------
+(0117) //
+(0118) // Ports intalization
+(0119) //
+(0120) //-------------------------------------------------------------------------------------------------
+(0121) void GLCD_InitializeInterface(void)
+(0122) {
+(0123) 	GLCD_DATA_DDR = 0xFF;
+_GLCD_InitializeInterface:
+    0020C EF8F      LDI	R24,0xFF
+    0020D BB8A      OUT	0x1A,R24
+(0124) 	GLCD_CTRL_DDR = ((1 << GLCD_WR) | (1 << GLCD_RD) | (1 << GLCD_CE) | (1 << GLCD_CD) | (1 << GLCD_RESET) | (1 << GLCD_FS));
+    0020E E38F      LDI	R24,0x3F
+    0020F BB84      OUT	0x14,R24
+(0125) 	GLCD_CTRL_PORT |= ((1 << GLCD_WR) | (1 << GLCD_RD) | (1 << GLCD_CE) | (1 << GLCD_CD) | (1 << GLCD_RESET) | (1 << GLCD_FS));
+    00210 B385      IN	R24,0x15
+    00211 638F      ORI	R24,0x3F
+    00212 BB85      OUT	0x15,R24
+    00213 9508      RET
+(0126) }
+_GLCD_CheckStatus:
+  tmp                  --> R10
+    00214 92AA      ST	-Y,R10
+(0127) //-------------------------------------------------------------------------------------------------
+(0128) //
+(0129) // Reads dispay status
+(0130) //
+(0131) //-------------------------------------------------------------------------------------------------
+(0132) unsigned char GLCD_CheckStatus(void)
+(0133) {
+(0134) 	uint8_t tmp;
+(0135) 	GLCD_DATA_DDR = 0x00;
+    00215 2422      CLR	R2
+    00216 BA2A      OUT	0x1A,R2
+(0136) 
+(0137) 	GLCD_CTRL_PORT &= ~((1 << GLCD_RD) | (1 << GLCD_CE));
+    00217 B385      IN	R24,0x15
+    00218 7F89      ANDI	R24,0xF9
+    00219 BB85      OUT	0x15,R24
+(0138) 	delay();
+    0021A DFE4      RCALL	_delay
+(0139) 	tmp = GLCD_DATA_PIN;
+    0021B B2A9      IN	R10,0x19
+(0140) 	GLCD_DATA_DDR = 0xFF;
+    0021C EF8F      LDI	R24,0xFF
+    0021D BB8A      OUT	0x1A,R24
+(0141) 	GLCD_CTRL_PORT |= ((1 << GLCD_RD) | (1 << GLCD_CE));
+    0021E B385      IN	R24,0x15
+    0021F 6086      ORI	R24,6
+    00220 BB85      OUT	0x15,R24
+(0142) 	return tmp;
+    00221 2D0A      MOV	R16,R10
+    00222 90A9      LD	R10,Y+
+    00223 9508      RET
+(0143) }
+_GLCD_WriteCommand:
+  command              --> R10
+    00224 92AA      ST	-Y,R10
+    00225 2EA0      MOV	R10,R16
+(0144) //-------------------------------------------------------------------------------------------------
+(0145) //
+(0146) // Writes instruction
+(0147) //
+(0148) //-------------------------------------------------------------------------------------------------
+(0149) void GLCD_WriteCommand(unsigned char command)
+(0150) {
+(0151) 	while (!(GLCD_CheckStatus() & 0x03));
+    00226 DFED      RCALL	_GLCD_CheckStatus
+    00227 2F80      MOV	R24,R16
+    00228 7083      ANDI	R24,3
+    00229 F3E1      BEQ	0x0226
+(0152) 	GLCD_DATA_PORT = command;
+    0022A BAAB      OUT	0x1B,R10
+(0153) 
+(0154) 	GLCD_CTRL_PORT &= ~((1 << GLCD_WR) | (1 << GLCD_CE));
+    0022B B385      IN	R24,0x15
+    0022C 7F8A      ANDI	R24,0xFA
+    0022D BB85      OUT	0x15,R24
+(0155) 	delay();
+    0022E DFD0      RCALL	_delay
+(0156) 	GLCD_CTRL_PORT |= ((1 << GLCD_WR) | (1 << GLCD_CE));
+    0022F B385      IN	R24,0x15
+    00230 6085      ORI	R24,5
+    00231 BB85      OUT	0x15,R24
+    00232 90A9      LD	R10,Y+
+    00233 9508      RET
+(0157) }
+_GLCD_WriteData:
+  data                 --> R10
+    00234 92AA      ST	-Y,R10
+    00235 2EA0      MOV	R10,R16
+(0158) 
+(0159) //-------------------------------------------------------------------------------------------------
+(0160) //
+(0161) // Writes data
+(0162) //
+(0163) //-------------------------------------------------------------------------------------------------
+(0164) void GLCD_WriteData(unsigned char data)
+(0165) {
+(0166) 	while (!(GLCD_CheckStatus() & 0x03));
+    00236 DFDD      RCALL	_GLCD_CheckStatus
+    00237 2F80      MOV	R24,R16
+    00238 7083      ANDI	R24,3
+    00239 F3E1      BEQ	0x0236
+(0167) 	GLCD_DATA_PORT = data;
+    0023A BAAB      OUT	0x1B,R10
+(0168) 
+(0169) 	GLCD_CTRL_PORT &= ~((1 << GLCD_WR) | (1 << GLCD_CE) | (1 << GLCD_CD));
+    0023B B385      IN	R24,0x15
+    0023C 7F82      ANDI	R24,0xF2
+    0023D BB85      OUT	0x15,R24
+(0170) 	delay();
+    0023E DFC0      RCALL	_delay
+(0171) 	GLCD_CTRL_PORT |= ((1 << GLCD_WR) | (1 << GLCD_CE) | (1 << GLCD_CD));
+    0023F B385      IN	R24,0x15
+    00240 608D      ORI	R24,0xD
+    00241 BB85      OUT	0x15,R24
+    00242 90A9      LD	R10,Y+
+    00243 9508      RET
+(0172) }
+_GLCD_ReadData:
+  tmp                  --> R10
+    00244 92AA      ST	-Y,R10
+(0173) //-------------------------------------------------------------------------------------------------
+(0174) //
+(0175) // Reads data
+(0176) //
+(0177) //-------------------------------------------------------------------------------------------------
+(0178) unsigned char GLCD_ReadData(void)
+(0179) {
+(0180) 	uint8_t tmp;
+(0181) 	while (!(GLCD_CheckStatus() & 0x03));
+    00245 DFCE      RCALL	_GLCD_CheckStatus
+    00246 2F80      MOV	R24,R16
+    00247 7083      ANDI	R24,3
+    00248 F3E1      BEQ	0x0245
+(0182) 	GLCD_DATA_DDR = 0x00;
+    00249 2422      CLR	R2
+    0024A BA2A      OUT	0x1A,R2
+(0183) 
+(0184) 	GLCD_CTRL_PORT &= ~((1 << GLCD_RD) | (1 << GLCD_CE) | (1 << GLCD_CD));
+    0024B B385      IN	R24,0x15
+    0024C 7F81      ANDI	R24,0xF1
+    0024D BB85      OUT	0x15,R24
+(0185) 	delay();
+    0024E DFB0      RCALL	_delay
+(0186) 	tmp = GLCD_DATA_PIN;
+    0024F B2A9      IN	R10,0x19
+(0187) 	GLCD_CTRL_PORT |= ((1 << GLCD_RD) | (1 << GLCD_CE) | (1 << GLCD_CD));
+    00250 B385      IN	R24,0x15
+    00251 608E      ORI	R24,0xE
+    00252 BB85      OUT	0x15,R24
+(0188) 	GLCD_DATA_DDR = 0xFF;
+    00253 EF8F      LDI	R24,0xFF
+    00254 BB8A      OUT	0x1A,R24
+(0189) 	return tmp;
+    00255 2D0A      MOV	R16,R10
+    00256 90A9      LD	R10,Y+
+    00257 9508      RET
+(0190) }
+_GLCD_SetAddressPointer:
+  address              --> R20
+    00258 934A      ST	-Y,R20
+    00259 935A      ST	-Y,R21
+    0025A 01A8      MOVW	R20,R16
+(0191) //-------------------------------------------------------------------------------------------------
+(0192) //
+(0193) // Sets address pointer for display RAM memory
+(0194) //
+(0195) //-------------------------------------------------------------------------------------------------
+(0196) void GLCD_SetAddressPointer(unsigned int address)
+(0197) {
+(0198) 	GLCD_WriteData(address & 0xFF);
+    0025B 2F04      MOV	R16,R20
+    0025C 7F0F      ANDI	R16,0xFF
+    0025D DFD6      RCALL	_GLCD_WriteData
+(0199) 	GLCD_WriteData(address >> 8);
+    0025E 018A      MOVW	R16,R20
+    0025F 2F01      MOV	R16,R17
+    00260 2711      CLR	R17
+    00261 DFD2      RCALL	_GLCD_WriteData
+(0200) 	GLCD_WriteCommand(T6963_SET_ADDRESS_POINTER);
+    00262 E204      LDI	R16,0x24
+    00263 DFC0      RCALL	_GLCD_WriteCommand
+    00264 9159      LD	R21,Y+
+    00265 9149      LD	R20,Y+
+    00266 9508      RET
+(0201) }
+_GLCD_ClearText:
+  i                    --> R20
+    00267 934A      ST	-Y,R20
+    00268 935A      ST	-Y,R21
+(0202) //-------------------------------------------------------------------------------------------------
+(0203) //
+(0204) // Clears text area of display RAM memory
+(0205) //
+(0206) //-------------------------------------------------------------------------------------------------
+(0207) void GLCD_ClearText(void)
+(0208) {
+(0209) 	int i;
+(0210) 	GLCD_SetAddressPointer(GLCD_TEXT_HOME);
+    00269 2700      CLR	R16
+    0026A 2711      CLR	R17
+    0026B DFEC      RCALL	_GLCD_SetAddressPointer
+(0211) 
+(0212) 	for (i = 0; i < GLCD_TEXT_SIZE; i++)
+    0026C 2744      CLR	R20
+    0026D 2755      CLR	R21
+(0213) 	{
+(0214) 		GLCD_WriteDisplayData(0);
+    0026E 2700      CLR	R16
+    0026F D0BF      RCALL	_GLCD_WriteDisplayData
+    00270 5F4F      SUBI	R20,0xFF
+    00271 4F5F      SBCI	R21,0xFF
+    00272 EE80      LDI	R24,0xE0
+    00273 E091      LDI	R25,1
+    00274 1748      CP	R20,R24
+    00275 0759      CPC	R21,R25
+    00276 F3BC      BLT	0x026E
+    00277 9159      LD	R21,Y+
+    00278 9149      LD	R20,Y+
+    00279 9508      RET
+(0215) 	}
+(0216) }
+_GLCD_ClearCG:
+  i                    --> R20
+    0027A 934A      ST	-Y,R20
+    0027B 935A      ST	-Y,R21
+(0217) //-------------------------------------------------------------------------------------------------
+(0218) //
+(0219) // Clears characters generator area of display RAM memory
+(0220) //
+(0221) //-------------------------------------------------------------------------------------------------
+(0222) void GLCD_ClearCG(void)
+(0223) {
+(0224) 	unsigned int i;
+(0225) 	GLCD_SetAddressPointer(GLCD_EXTERNAL_CG_HOME);
+    0027C E000      LDI	R16,0
+    0027D E110      LDI	R17,0x10
+    0027E DFD9      RCALL	_GLCD_SetAddressPointer
+(0226) 
+(0227) 	for (i = 0; i < 256 * 8; i++)
+    0027F 2744      CLR	R20
+    00280 2755      CLR	R21
+    00281 C004      RJMP	0x0286
+(0228) 	{
+(0229) 		GLCD_WriteDisplayData(0);
+    00282 2700      CLR	R16
+    00283 D0AB      RCALL	_GLCD_WriteDisplayData
+    00284 5F4F      SUBI	R20,0xFF
+    00285 4F5F      SBCI	R21,0xFF
+    00286 E080      LDI	R24,0
+    00287 E098      LDI	R25,0x8
+    00288 1748      CP	R20,R24
+    00289 0759      CPC	R21,R25
+    0028A F3B8      BCS	0x0282
+    0028B 9159      LD	R21,Y+
+    0028C 9149      LD	R20,Y+
+    0028D 9508      RET
+(0230) 	}
+(0231) }
+_GLCD_ClearGraphic:
+  i                    --> R20
+    0028E 934A      ST	-Y,R20
+    0028F 935A      ST	-Y,R21
+(0232) //-------------------------------------------------------------------------------------------------
+(0233) //
+(0234) // Clears graphics area of display RAM memory
+(0235) //
+(0236) //-------------------------------------------------------------------------------------------------
+(0237) void GLCD_ClearGraphic(void)
+(0238) {
+(0239) 	int i;
+(0240) 	GLCD_SetAddressPointer(GLCD_GRAPHIC_HOME);
+    00290 EE00      LDI	R16,0xE0
+    00291 E011      LDI	R17,1
+    00292 DFC5      RCALL	_GLCD_SetAddressPointer
+(0241) 	for (i = 0; i < GLCD_GRAPHIC_SIZE; i++)
+    00293 2744      CLR	R20
+    00294 2755      CLR	R21
+(0242) 	{
+(0243) 		GLCD_WriteDisplayData(0x00);
+    00295 2700      CLR	R16
+    00296 D098      RCALL	_GLCD_WriteDisplayData
+    00297 5F4F      SUBI	R20,0xFF
+    00298 4F5F      SBCI	R21,0xFF
+    00299 E080      LDI	R24,0
+    0029A E09F      LDI	R25,0xF
+    0029B 1748      CP	R20,R24
+    0029C 0759      CPC	R21,R25
+    0029D F3BC      BLT	0x0295
+    0029E 9159      LD	R21,Y+
+    0029F 9149      LD	R20,Y+
+    002A0 9508      RET
+(0244) 	}
+(0245) }
+_GLCD_WriteChar:
+  charCode             --> R20
+    002A1 934A      ST	-Y,R20
+    002A2 2F40      MOV	R20,R16
+(0246) //-------------------------------------------------------------------------------------------------
+(0247) //
+(0248) // Writes a single character (ASCII code) to display RAM memory
+(0249) //
+(0250) //-------------------------------------------------------------------------------------------------
+(0251) void GLCD_WriteChar(char charCode)
+(0252) {
+(0253) 	GLCD_WriteDisplayData(charCode - 32);
+    002A3 2F04      MOV	R16,R20
+    002A4 5200      SUBI	R16,0x20
+    002A5 D089      RCALL	_GLCD_WriteDisplayData
+    002A6 9149      LD	R20,Y+
+    002A7 9508      RET
+(0254) }
+_GLCD_WriteString:
+  string               --> R10
+    002A8 92AA      ST	-Y,R10
+    002A9 92BA      ST	-Y,R11
+    002AA 0158      MOVW	R10,R16
+(0255) //-------------------------------------------------------------------------------------------------
+(0256) //
+(0257) // Writes null-terminated string to display RAM memory
+(0258) //
+(0259) //-------------------------------------------------------------------------------------------------
+(0260) void GLCD_WriteString(char * string)
+(0261) {
+    002AB C004      RJMP	0x02B0
+(0262) 	while (*string)
+(0263) 	{
+(0264) 		GLCD_WriteChar(*string++);
+    002AC 01F5      MOVW	R30,R10
+    002AD 9101      LD	R16,Z+
+    002AE 015F      MOVW	R10,R30
+    002AF DFF1      RCALL	_GLCD_WriteChar
+    002B0 01F5      MOVW	R30,R10
+    002B1 8020      LD	R2,Z
+    002B2 2022      TST	R2
+    002B3 F7C1      BNE	0x02AC
+    002B4 90B9      LD	R11,Y+
+    002B5 90A9      LD	R10,Y+
+    002B6 9508      RET
+(0265) 	}
+(0266) }
+_GLCD_TextGoTo:
+  address              --> R10
+  y                    --> R12
+  x                    --> R10
+    002B7 940E 05D3 CALL	push_xgset003C
+    002B9 2EC2      MOV	R12,R18
+    002BA 2EA0      MOV	R10,R16
+(0267) 
+(0268) //-------------------------------------------------------------------------------------------------
+(0269) //
+(0270) // Sets display coordinates
+(0271) //
+(0272) //-------------------------------------------------------------------------------------------------
+(0273) void GLCD_TextGoTo(unsigned char x, unsigned char y)
+(0274) {
+(0275) 	unsigned int address;
+(0276) 
+(0277) 	address = GLCD_TEXT_HOME + x + (GLCD_TEXT_AREA * y);
+    002BB 2D2C      MOV	R18,R12
+    002BC 2733      CLR	R19
+    002BD E10E      LDI	R16,0x1E
+    002BE E010      LDI	R17,0
+    002BF 940E 05A6 CALL	empy16s
+    002C1 2C2A      MOV	R2,R10
+    002C2 2433      CLR	R3
+    002C3 0E20      ADD	R2,R16
+    002C4 1E31      ADC	R3,R17
+    002C5 0151      MOVW	R10,R2
+(0278) 
+(0279) 	GLCD_SetAddressPointer(address);
+    002C6 0181      MOVW	R16,R2
+    002C7 DF90      RCALL	_GLCD_SetAddressPointer
+    002C8 940C 05B6 JMP	pop_xgset003C
+    002CA 9508      RET
+(0280) }
+_GLCD_DefineCharacter:
+  address              --> R20
+  i                    --> R20
+  defChar              --> R10
+  charCode             --> R12
+    002CB 940E 05E2 CALL	push_xgset303C
+    002CD 0159      MOVW	R10,R18
+    002CE 2EC0      MOV	R12,R16
+(0281) //-------------------------------------------------------------------------------------------------
+(0282) //
+(0283) // Writes single char pattern to character generator area of display RAM memory
+(0284) //
+(0285) //-------------------------------------------------------------------------------------------------
+(0286) void GLCD_DefineCharacter(unsigned char charCode, unsigned char * defChar)
+(0287) {
+(0288) 	unsigned int address;
+(0289) 	unsigned char i;
+(0290) 
+(0291) 	address = GLCD_EXTERNAL_CG_HOME + (8 * charCode);
+    002CF 2D4C      MOV	R20,R12
+    002D0 2755      CLR	R21
+    002D1 0F44      LSL	R20
+    002D2 1F55      ROL	R21
+    002D3 0F44      LSL	R20
+    002D4 1F55      ROL	R21
+    002D5 0F44      LSL	R20
+    002D6 1F55      ROL	R21
+    002D7 5040      SUBI	R20,0
+    002D8 4F50      SBCI	R21,0xF0
+(0292) 
+(0293) 	GLCD_SetAddressPointer(address);
+    002D9 018A      MOVW	R16,R20
+    002DA DF7D      RCALL	_GLCD_SetAddressPointer
+(0294) 
+(0295) 	for (i = 0; i < 8; i++)
+    002DB 2744      CLR	R20
+    002DC C007      RJMP	0x02E4
+(0296) 	{
+(0297) 		GLCD_WriteDisplayData(*(defChar + i));
+    002DD 2FE4      MOV	R30,R20
+    002DE 27FF      CLR	R31
+    002DF 0DEA      ADD	R30,R10
+    002E0 1DFB      ADC	R31,R11
+    002E1 8100      LD	R16,Z
+    002E2 D04C      RCALL	_GLCD_WriteDisplayData
+    002E3 9543      INC	R20
+    002E4 3048      CPI	R20,0x8
+    002E5 F3B8      BCS	0x02DD
+    002E6 940C 05E9 JMP	pop_xgset303C
+    002E8 9508      RET
+(0298) 	}
+(0299) }
+_GLCD_SetPixel:
+  address              --> R10
+  tmp                  --> R10
+  color                --> R14
+  y                    --> R10
+  x                    --> R12
+    002E9 940E 05D1 CALL	push_xgset00FC
+    002EB 2EA2      MOV	R10,R18
+    002EC 2EC0      MOV	R12,R16
+    002ED 80EE      LDD	R14,Y+6
+(0300) 
+(0301) //-------------------------------------------------------------------------------------------------
+(0302) //
+(0303) // Set (if color==1) or clear (if color==0) pixel on screen
+(0304) //
+(0305) //-------------------------------------------------------------------------------------------------
+(0306) void GLCD_SetPixel(unsigned char x, unsigned char y, unsigned char color)
+(0307) {
+(0308) 	unsigned char tmp;
+(0309) 	unsigned int address;
+(0310) 
+(0311) 	address = GLCD_GRAPHIC_HOME + (x / GLCD_FONT_WIDTH) + (GLCD_GRAPHIC_AREA * y);
+    002EE 2D2A      MOV	R18,R10
+    002EF 2733      CLR	R19
+    002F0 E10E      LDI	R16,0x1E
+    002F1 E010      LDI	R17,0
+    002F2 940E 05A6 CALL	empy16s
+    002F4 0118      MOVW	R2,R16
+    002F5 E028      LDI	R18,0x8
+    002F6 E030      LDI	R19,0
+    002F7 2D0C      MOV	R16,R12
+    002F8 2711      CLR	R17
+    002F9 940E 0570 CALL	div16s
+    002FB 01C8      MOVW	R24,R16
+    002FC 5280      SUBI	R24,0x20
+    002FD 4F9E      SBCI	R25,0xFE
+    002FE 015C      MOVW	R10,R24
+    002FF 0CA2      ADD	R10,R2
+    00300 1CB3      ADC	R11,R3
+(0312) 
+(0313) 	GLCD_SetAddressPointer(address);
+    00301 0185      MOVW	R16,R10
+    00302 DF55      RCALL	_GLCD_SetAddressPointer
+(0314) 
+(0315) 	GLCD_WriteCommand(T6963_DATA_READ_AND_NONVARIABLE);
+    00303 EC05      LDI	R16,0xC5
+    00304 DF1F      RCALL	_GLCD_WriteCommand
+(0316) 	tmp = GLCD_ReadData();
+    00305 DF3E      RCALL	_GLCD_ReadData
+    00306 2EA0      MOV	R10,R16
+(0317) 
+(0318) 	if (color)
+    00307 20EE      TST	R14
+    00308 F081      BEQ	0x0319
+(0319) 		tmp |= (1 << (GLCD_FONT_WIDTH - 1 - (x % GLCD_FONT_WIDTH)));
+    00309 E028      LDI	R18,0x8
+    0030A E030      LDI	R19,0
+    0030B 2D0C      MOV	R16,R12
+    0030C 2711      CLR	R17
+    0030D 940E 056C CALL	mod16s
+    0030F E017      LDI	R17,7
+    00310 1B10      SUB	R17,R16
+    00311 2722      CLR	R18
+    00312 FD17      SBRC	R17,7
+    00313 9520      COM	R18
+    00314 E001      LDI	R16,1
+    00315 940E 0602 CALL	lsl8
+    00317 2AA0      OR	R10,R16
+    00318 C011      RJMP	0x032A
+(0320) 	else
+(0321) 		tmp &= ~(1 << (GLCD_FONT_WIDTH - 1 - (x % GLCD_FONT_WIDTH)));
+    00319 E028      LDI	R18,0x8
+    0031A E030      LDI	R19,0
+    0031B 2D0C      MOV	R16,R12
+    0031C 2711      CLR	R17
+    0031D 940E 056C CALL	mod16s
+    0031F E017      LDI	R17,7
+    00320 1B10      SUB	R17,R16
+    00321 2722      CLR	R18
+    00322 FD17      SBRC	R17,7
+    00323 9520      COM	R18
+    00324 E001      LDI	R16,1
+    00325 940E 0602 CALL	lsl8
+    00327 2E20      MOV	R2,R16
+    00328 9420      COM	R2
+    00329 20A2      AND	R10,R2
+(0322) 
+(0323) 	GLCD_WriteDisplayData(tmp);
+    0032A 2D0A      MOV	R16,R10
+    0032B D003      RCALL	_GLCD_WriteDisplayData
+    0032C 940C 05BB JMP	pop_xgset00FC
+    0032E 9508      RET
+(0324) 
+(0325) }
+_GLCD_WriteDisplayData:
+  x                    --> R10
+    0032F 92AA      ST	-Y,R10
+    00330 2EA0      MOV	R10,R16
+(0326) //-------------------------------------------------------------------------------------------------
+(0327) //
+(0328) // Writes display data and increment address pointer
+(0329) //
+(0330) //-------------------------------------------------------------------------------------------------
+(0331) void GLCD_WriteDisplayData(unsigned char x)
+(0332) {
+(0333) 	GLCD_WriteData(x);
+    00331 2D0A      MOV	R16,R10
+    00332 DF01      RCALL	_GLCD_WriteData
+(0334) 	GLCD_WriteCommand(T6963_DATA_WRITE_AND_INCREMENT);
+    00333 EC00      LDI	R16,0xC0
+    00334 DEEF      RCALL	_GLCD_WriteCommand
+    00335 90A9      LD	R10,Y+
+    00336 9508      RET
+(0335) }
+_GLCD_GraphicGoTo:
+  address              --> R10
+  y                    --> R12
+  x                    --> R10
+    00337 940E 05D3 CALL	push_xgset003C
+    00339 2EC2      MOV	R12,R18
+    0033A 2EA0      MOV	R10,R16
+(0336) //-------------------------------------------------------------------------------------------------
+(0337) //
+(0338) // Sets graphics coordinates
+(0339) //
+(0340) //-------------------------------------------------------------------------------------------------
+(0341) void GLCD_GraphicGoTo(unsigned char x, unsigned char y)
+(0342) {
+(0343) 	unsigned int address;
+(0344) 	address = GLCD_GRAPHIC_HOME + (x / GLCD_FONT_WIDTH) + (GLCD_GRAPHIC_AREA * y);
+    0033B 2D2C      MOV	R18,R12
+    0033C 2733      CLR	R19
+    0033D E10E      LDI	R16,0x1E
+    0033E E010      LDI	R17,0
+    0033F 940E 05A6 CALL	empy16s
+    00341 0118      MOVW	R2,R16
+    00342 E028      LDI	R18,0x8
+    00343 E030      LDI	R19,0
+    00344 2D0A      MOV	R16,R10
+    00345 2711      CLR	R17
+    00346 940E 0570 CALL	div16s
+    00348 01C8      MOVW	R24,R16
+    00349 5280      SUBI	R24,0x20
+    0034A 4F9E      SBCI	R25,0xFE
+    0034B 015C      MOVW	R10,R24
+    0034C 0CA2      ADD	R10,R2
+    0034D 1CB3      ADC	R11,R3
+(0345) 	GLCD_SetAddressPointer(address);
+    0034E 0185      MOVW	R16,R10
+    0034F DF08      RCALL	_GLCD_SetAddressPointer
+    00350 940C 05B6 JMP	pop_xgset003C
+    00352 9508      RET
+(0346) }
+(0347) 
+(0348) //-------------------------------------------------------------------------------------------------
+(0349) //
+(0350) // Display initalization
+(0351) //
+(0352) //-------------------------------------------------------------------------------------------------
+(0353) void GLCD_Initialize(void)
+(0354) {
+(0355) 	GLCD_InitializeInterface();
+_GLCD_Initialize:
+    00353 DEB8      RCALL	_GLCD_InitializeInterface
+(0356) 
+(0357) 	GLCD_CTRL_PORT &= ~(1 << GLCD_RESET);
+    00354 98AC      CBI	0x15,4
+(0358) 	delay_ms(1);
+    00355 E001      LDI	R16,1
+    00356 E010      LDI	R17,0
+    00357 D024      RCALL	_delay_ms
+(0359) 	GLCD_CTRL_PORT |= (1 << GLCD_RESET);
+    00358 9AAC      SBI	0x15,4
+(0360) 
+(0361) #if (GLCD_FONT_WIDTH == 8)
+(0362) 	GLCD_CTRL_PORT &= ~(1 << GLCD_FS);
+    00359 98AD      CBI	0x15,5
+(0363) #endif
+(0364) 
+(0365) 	GLCD_WriteData(GLCD_GRAPHIC_HOME & 0xFF);
+    0035A EE00      LDI	R16,0xE0
+    0035B DED8      RCALL	_GLCD_WriteData
+(0366) 	GLCD_WriteData(GLCD_GRAPHIC_HOME >> 8);
+    0035C E001      LDI	R16,1
+    0035D DED6      RCALL	_GLCD_WriteData
+(0367) 	GLCD_WriteCommand(T6963_SET_GRAPHIC_HOME_ADDRESS);
+    0035E E402      LDI	R16,0x42
+    0035F DEC4      RCALL	_GLCD_WriteCommand
+(0368) 
+(0369) 	GLCD_WriteData(GLCD_GRAPHIC_AREA);
+    00360 E10E      LDI	R16,0x1E
+    00361 DED2      RCALL	_GLCD_WriteData
+(0370) 	GLCD_WriteData(0x00);
+    00362 2700      CLR	R16
+    00363 DED0      RCALL	_GLCD_WriteData
+(0371) 	GLCD_WriteCommand(T6963_SET_GRAPHIC_AREA);
+    00364 E403      LDI	R16,0x43
+    00365 DEBE      RCALL	_GLCD_WriteCommand
+(0372) 
+(0373) 	GLCD_WriteData(GLCD_TEXT_HOME);
+    00366 2700      CLR	R16
+    00367 DECC      RCALL	_GLCD_WriteData
+(0374) 	GLCD_WriteData(GLCD_TEXT_HOME >> 8);
+    00368 2700      CLR	R16
+    00369 DECA      RCALL	_GLCD_WriteData
+(0375) 	GLCD_WriteCommand(T6963_SET_TEXT_HOME_ADDRESS);
+    0036A E400      LDI	R16,0x40
+    0036B DEB8      RCALL	_GLCD_WriteCommand
+(0376) 
+(0377) 	GLCD_WriteData(GLCD_TEXT_AREA);
+    0036C E10E      LDI	R16,0x1E
+    0036D DEC6      RCALL	_GLCD_WriteData
+(0378) 	GLCD_WriteData(0x00);
+    0036E 2700      CLR	R16
+    0036F DEC4      RCALL	_GLCD_WriteData
+(0379) 	GLCD_WriteCommand(T6963_SET_TEXT_AREA);
+    00370 E401      LDI	R16,0x41
+    00371 DEB2      RCALL	_GLCD_WriteCommand
+(0380) 
+(0381) 	GLCD_WriteData(GLCD_OFFSET_REGISTER);
+    00372 E002      LDI	R16,2
+    00373 DEC0      RCALL	_GLCD_WriteData
+(0382) 	GLCD_WriteData(0x00);
+    00374 2700      CLR	R16
+    00375 DEBE      RCALL	_GLCD_WriteData
+(0383) 	GLCD_WriteCommand(T6963_SET_OFFSET_REGISTER);
+    00376 E202      LDI	R16,0x22
+    00377 DEAC      RCALL	_GLCD_WriteCommand
+(0384) 
+(0385) 	GLCD_WriteCommand(T6963_DISPLAY_MODE | T6963_GRAPHIC_DISPLAY_ON | T6963_TEXT_DISPLAY_ON /*| T6963_CURSOR_DISPLAY_ON*/);
+    00378 E90C      LDI	R16,0x9C
+    00379 DEAA      RCALL	_GLCD_WriteCommand
+(0386) 
+(0387) 	GLCD_WriteCommand(T6963_MODE_SET | 0);
+    0037A E800      LDI	R16,0x80
+    0037B CEA8      RJMP	_GLCD_WriteCommand
+(0388) 
+(0389) }
+_delay_ms:
+  i                    --> R20
+  j                    --> R22
+  ms                   --> R16
+    0037C 940E 05D8 CALL	push_xgsetF000
+(0390) 
+(0391) void delay_ms(unsigned int ms)
+(0392) {
+(0393) 	int i, j;
+(0394) 
+(0395) 	for (i = 0; i<ms; i++)
+    0037E 2744      CLR	R20
+    0037F 2755      CLR	R21
+    00380 C00B      RJMP	0x038C
+(0396) 		for (j = 0; j<2100; j++);
+    00381 2766      CLR	R22
+    00382 2777      CLR	R23
+    00383 5F6F      SUBI	R22,0xFF
+    00384 4F7F      SBCI	R23,0xFF
+    00385 E384      LDI	R24,0x34
+    00386 E098      LDI	R25,0x8
+    00387 1768      CP	R22,R24
+    00388 0779      CPC	R23,R25
+    00389 F3CC      BLT	0x0383
+    0038A 5F4F      SUBI	R20,0xFF
+    0038B 4F5F      SBCI	R21,0xFF
+    0038C 1740      CP	R20,R16
+    0038D 0751      CPC	R21,R17
+    0038E F390      BCS	0x0381
+    0038F 940C 05DD JMP	pop_xgsetF000
+    00391 9508      RET
+(0397) }
+(0398) 
+(0399) void GLCD_Clear(void)
+(0400) {
+(0401) 	GLCD_ClearCG();
+_GLCD_Clear:
+    00392 DEE7      RCALL	_GLCD_ClearCG
+(0402) 	GLCD_ClearGraphic();
+    00393 DEFA      RCALL	_GLCD_ClearGraphic
+    00394 CED2      RJMP	_GLCD_ClearText
+(0403) 	GLCD_ClearText();
+(0404) }
+_tx_char:
+  tx_data              --> R16
+    00395 9B5D      SBIS	0x0B,5
+    00396 CFFE      RJMP	_tx_char
+    00394 CED2      RJMP	_GLCD_ClearText
+FILE: C:\avr\exhibition\exhibition1\main.c
+(0001) #include <time.h>
+(0002) #include <iom128v.h>
+(0003) #include <macros.h>
+(0004) #include "graphic.h"
+(0005) #include "t6963c.h"
+(0006) 
+(0007) void write_instruction(char data);
+(0008) void write_data(char data);
+(0009) void init_LCD(void);
+(0010) void lcd_clear(void);
+(0011) volatile int x=66,y=19;
+(0012) void up(void);
+(0013) void down(void);
+(0014) void left(void);
+(0015) void right(void);
+(0016) char flag;
+(0017) char *BUFF;
+(0018) unsigned int baudrate[15]={832, 416, 207, 138, 103, 68, 51, 34, 25, 16, 8, 7, 3, 1, 0};
+(0019) 
+(0020) void tx_char(unsigned char tx_data)
+(0021) {
+(0022)   //시리얼포트로 데이터 송신이 완료되고 송신버퍼가 준비되었는지 검사
+(0023)   while((UCSR0A&0x20) == 0x00);
+_tx_char:
+  tx_data              --> R16
+    00395 9B5D      SBIS	0x0B,5
+    00396 CFFE      RJMP	_tx_char
+(0024)   UDR0 = tx_data; //시리얼 포트를 통하여 데이터 전송
+    00397 B90C      OUT	0x0C,R16
+    00398 9508      RET
+(0025) }
+    00399 934A      ST	-Y,R20
+    0039A 935A      ST	-Y,R21
+    0039B 01A8      MOVW	R20,R16
+(0026) 
+(0027) 
+(0028) 
+(0029) void tx_string(unsigned char *str_data)
+(0030) {
+    0039C C005      RJMP	0x03A2
+(0031)   while(*str_data != 0x00){  //문자열의 끝부분이 아니라면
+(0032)     tx_char(*str_data);      //시리얼포트로 한개의 문자를 송신한다.
+    0039D 01FA      MOVW	R30,R20
+    0039E 8100      LD	R16,Z
+    0039F DFF5      RCALL	_tx_char
+(0033)     str_data++;
+    003A0 5F4F      SUBI	R20,0xFF
+    003A1 4F5F      SBCI	R21,0xFF
+    003A2 01FA      MOVW	R30,R20
+    003A3 8020      LD	R2,Z
+    003A4 2022      TST	R2
+    003A5 F7B9      BNE	0x039D
+    003A6 9159      LD	R21,Y+
+    003A7 9149      LD	R20,Y+
+    003A8 9508      RET
+(0034)   }
+(0035) }
+    003A9 922A      ST	-Y,R2
+    003AA B62F      IN	R2,0x3F
+    003AB 922A      ST	-Y,R2
+(0036) #pragma interrupt_handler Bluetooth:iv_USART1_RX
+(0037) void Bluetooth(void)
+(0038) {
+(0039)     flag=UDR0;
+    003AC B02C      IN	R2,0x0C
+    003AD 9220 012A STS	_flag,R2
+    003AF 9029      LD	R2,Y+
+    003B0 BE2F      OUT	0x3F,R2
+    003B1 9029      LD	R2,Y+
+    003B2 9518      RETI
+(0040) }
+    003B3 940E 05F0 CALL	push_xgsetF03C
+    003B5 2EC2      MOV	R12,R18
+    003B6 2EA0      MOV	R10,R16
+    003B7 9721      SBIW	R28,1
+(0041) void GLCD_select(unsigned char x, unsigned char y)
+(0042) {
+(0043)     unsigned char j,i;
+(0044) 
+(0045)     for(j=0;j<8;j++)
+    003B8 2744      CLR	R20
+    003B9 C00D      RJMP	0x03C7
+(0046)         for(i=0;i<8;i++)
+    003BA 2766      CLR	R22
+    003BB C008      RJMP	0x03C4
+(0047)         {
+(0048)             GLCD_SetPixel(x+j, y+i, 1);
+    003BC E081      LDI	R24,1
+    003BD 8388      ST	Y,R24
+    003BE 2D2C      MOV	R18,R12
+    003BF 0F26      ADD	R18,R22
+    003C0 2D0A      MOV	R16,R10
+    003C1 0F04      ADD	R16,R20
+    003C2 DF26      RCALL	_GLCD_SetPixel
+    003C3 9563      INC	R22
+    003C4 3068      CPI	R22,0x8
+    003C5 F3B0      BCS	0x03BC
+    003C6 9543      INC	R20
+    003C7 3048      CPI	R20,0x8
+    003C8 F388      BCS	0x03BA
+(0049)         }
+(0050)         delay_ms(100);
+    003C9 E604      LDI	R16,0x64
+    003CA E010      LDI	R17,0
+    003CB DFB0      RCALL	_delay_ms
+    003CC 9621      ADIW	R28,1
+    003CD 940C 05F9 JMP	pop_xgsetF03C
+    003CF 9508      RET
+(0051) }
+    003D0 940E 05F0 CALL	push_xgsetF03C
+    003D2 2EC2      MOV	R12,R18
+    003D3 2EA0      MOV	R10,R16
+    003D4 9721      SBIW	R28,1
+(0052) 
+(0053) void GLCD_dselect(unsigned char x,unsigned char y)
+(0054) {
+(0055)     unsigned char j,i;
+(0056)     for(j=0;j<8;j++)
+    003D5 2744      CLR	R20
+    003D6 C00D      RJMP	0x03E4
+(0057)         for(i=0;i<8;i++)
+    003D7 2766      CLR	R22
+    003D8 C008      RJMP	0x03E1
+(0058)         {
+(0059)             GLCD_SetPixel(x+j, y+i, 0);
+    003D9 2422      CLR	R2
+    003DA 8228      ST	Y,R2
+    003DB 2D2C      MOV	R18,R12
+    003DC 0F26      ADD	R18,R22
+    003DD 2D0A      MOV	R16,R10
+    003DE 0F04      ADD	R16,R20
+    003DF DF09      RCALL	_GLCD_SetPixel
+    003E0 9563      INC	R22
+    003E1 3068      CPI	R22,0x8
+    003E2 F3B0      BCS	0x03D9
+    003E3 9543      INC	R20
+    003E4 3048      CPI	R20,0x8
+    003E5 F388      BCS	0x03D7
+(0060)         }
+(0061)         delay_ms(100);
+    003E6 E604      LDI	R16,0x64
+    003E7 E010      LDI	R17,0
+    003E8 DF93      RCALL	_delay_ms
+    003E9 9621      ADIW	R28,1
+    003EA 940C 05F9 JMP	pop_xgsetF03C
+    003EC 9508      RET
+(0062) }
+    003ED 920A      ST	-Y,R0
+    003EE 921A      ST	-Y,R1
+    003EF 922A      ST	-Y,R2
+    003F0 923A      ST	-Y,R3
+    003F1 924A      ST	-Y,R4
+    003F2 925A      ST	-Y,R5
+    003F3 926A      ST	-Y,R6
+    003F4 927A      ST	-Y,R7
+    003F5 928A      ST	-Y,R8
+    003F6 929A      ST	-Y,R9
+    003F7 930A      ST	-Y,R16
+    003F8 931A      ST	-Y,R17
+    003F9 932A      ST	-Y,R18
+    003FA 933A      ST	-Y,R19
+    003FB 938A      ST	-Y,R24
+    003FC 939A      ST	-Y,R25
+    003FD 93AA      ST	-Y,R26
+    003FE 93BA      ST	-Y,R27
+    003FF 93EA      ST	-Y,R30
+    00400 93FA      ST	-Y,R31
+    00401 B60F      IN	R0,0x3F
+    00402 920A      ST	-Y,R0
+(0063) 
+(0064) #pragma interrupt_handler up:iv_EXT_INT0
+(0065) void up(void)
+(0066) {
+(0067)     SREG &=0X7f;
+    00403 94F8      BCLR	7
+(0068)     GLCD_dselect(x,y);
+    00404 9120 0103 LDS	R18,_y
+    00406 9100 0101 LDS	R16,_x
+    00408 DFC7      RCALL	_GLCD_dselect
+(0069)     y-=11;
+    00409 9180 0103 LDS	R24,_y
+    0040B 9190 0104 LDS	R25,_y+1
+    0040D 970B      SBIW	R24,0xB
+    0040E 9390 0104 STS	_y+1,R25
+    00410 9380 0103 STS	_y,R24
+(0070)     if(y<19)     y=118;
+    00412 9180 0103 LDS	R24,_y
+    00414 9190 0104 LDS	R25,_y+1
+    00416 3183      CPI	R24,0x13
+    00417 E0E0      LDI	R30,0
+    00418 079E      CPC	R25,R30
+    00419 F434      BGE	0x0420
+    0041A E786      LDI	R24,0x76
+    0041B E090      LDI	R25,0
+    0041C 9390 0104 STS	_y+1,R25
+    0041E 9380 0103 STS	_y,R24
+(0071) 
+(0072)     GLCD_select(x,y);
+    00420 9120 0103 LDS	R18,_y
+    00422 9100 0101 LDS	R16,_x
+    00424 DF8E      RCALL	_GLCD_select
+(0073)     delay_ms(300);
+    00425 E20C      LDI	R16,0x2C
+    00426 E011      LDI	R17,1
+    00427 DF54      RCALL	_delay_ms
+    00428 9009      LD	R0,Y+
+    00429 BE0F      OUT	0x3F,R0
+    0042A 91F9      LD	R31,Y+
+    0042B 91E9      LD	R30,Y+
+    0042C 91B9      LD	R27,Y+
+    0042D 91A9      LD	R26,Y+
+    0042E 9199      LD	R25,Y+
+    0042F 9189      LD	R24,Y+
+    00430 9139      LD	R19,Y+
+    00431 9129      LD	R18,Y+
+    00432 9119      LD	R17,Y+
+    00433 9109      LD	R16,Y+
+    00434 9099      LD	R9,Y+
+    00435 9089      LD	R8,Y+
+    00436 9079      LD	R7,Y+
+    00437 9069      LD	R6,Y+
+    00438 9059      LD	R5,Y+
+    00439 9049      LD	R4,Y+
+    0043A 9039      LD	R3,Y+
+    0043B 9029      LD	R2,Y+
+    0043C 9019      LD	R1,Y+
+    0043D 9009      LD	R0,Y+
+    0043E 9518      RETI
+(0074) }
+    0043F 920A      ST	-Y,R0
+    00440 921A      ST	-Y,R1
+    00441 922A      ST	-Y,R2
+    00442 923A      ST	-Y,R3
+    00443 924A      ST	-Y,R4
+    00444 925A      ST	-Y,R5
+    00445 926A      ST	-Y,R6
+    00446 927A      ST	-Y,R7
+    00447 928A      ST	-Y,R8
+    00448 929A      ST	-Y,R9
+    00449 930A      ST	-Y,R16
+    0044A 931A      ST	-Y,R17
+    0044B 932A      ST	-Y,R18
+    0044C 933A      ST	-Y,R19
+    0044D 938A      ST	-Y,R24
+    0044E 939A      ST	-Y,R25
+    0044F 93AA      ST	-Y,R26
+    00450 93BA      ST	-Y,R27
+    00451 93EA      ST	-Y,R30
+    00452 93FA      ST	-Y,R31
+    00453 B60F      IN	R0,0x3F
+    00454 920A      ST	-Y,R0
+(0075) #pragma interrupt_handler down:iv_EXT_INT1
+(0076) void down(void)
+(0077) {
+(0078)         SREG &=0X7f;
+    00455 94F8      BCLR	7
+(0079)         GLCD_dselect(x,y);
+    00456 9120 0103 LDS	R18,_y
+    00458 9100 0101 LDS	R16,_x
+    0045A DF75      RCALL	_GLCD_dselect
+(0080)         y+=11;
+    0045B 9180 0103 LDS	R24,_y
+    0045D 9190 0104 LDS	R25,_y+1
+    0045F 960B      ADIW	R24,0xB
+    00460 9390 0104 STS	_y+1,R25
+    00462 9380 0103 STS	_y,R24
+(0081)         if(y>118)   y=19;
+    00464 E786      LDI	R24,0x76
+    00465 E090      LDI	R25,0
+    00466 9020 0103 LDS	R2,_y
+    00468 9030 0104 LDS	R3,_y+1
+    0046A 1582      CP	R24,R2
+    0046B 0593      CPC	R25,R3
+    0046C F42C      BGE	0x0472
+    0046D E183      LDI	R24,0x13
+    0046E 9390 0104 STS	_y+1,R25
+    00470 9380 0103 STS	_y,R24
+(0082) 
+(0083)         GLCD_select(x,y);
+    00472 9120 0103 LDS	R18,_y
+    00474 9100 0101 LDS	R16,_x
+    00476 DF3C      RCALL	_GLCD_select
+(0084)         delay_ms(300);
+    00477 E20C      LDI	R16,0x2C
+    00478 E011      LDI	R17,1
+    00479 DF02      RCALL	_delay_ms
+    0047A 9009      LD	R0,Y+
+    0047B BE0F      OUT	0x3F,R0
+    0047C 91F9      LD	R31,Y+
+    0047D 91E9      LD	R30,Y+
+    0047E 91B9      LD	R27,Y+
+    0047F 91A9      LD	R26,Y+
+    00480 9199      LD	R25,Y+
+    00481 9189      LD	R24,Y+
+    00482 9139      LD	R19,Y+
+    00483 9129      LD	R18,Y+
+    00484 9119      LD	R17,Y+
+    00485 9109      LD	R16,Y+
+    00486 9099      LD	R9,Y+
+    00487 9089      LD	R8,Y+
+    00488 9079      LD	R7,Y+
+    00489 9069      LD	R6,Y+
+    0048A 9059      LD	R5,Y+
+    0048B 9049      LD	R4,Y+
+    0048C 9039      LD	R3,Y+
+    0048D 9029      LD	R2,Y+
+    0048E 9019      LD	R1,Y+
+    0048F 9009      LD	R0,Y+
+    00490 9518      RETI
+(0085) }
+    00491 920A      ST	-Y,R0
+    00492 921A      ST	-Y,R1
+    00493 922A      ST	-Y,R2
+    00494 923A      ST	-Y,R3
+    00495 924A      ST	-Y,R4
+    00496 925A      ST	-Y,R5
+    00497 926A      ST	-Y,R6
+    00498 927A      ST	-Y,R7
+    00499 928A      ST	-Y,R8
+    0049A 929A      ST	-Y,R9
+    0049B 930A      ST	-Y,R16
+    0049C 931A      ST	-Y,R17
+    0049D 932A      ST	-Y,R18
+    0049E 933A      ST	-Y,R19
+    0049F 938A      ST	-Y,R24
+    004A0 939A      ST	-Y,R25
+    004A1 93AA      ST	-Y,R26
+    004A2 93BA      ST	-Y,R27
+    004A3 93EA      ST	-Y,R30
+    004A4 93FA      ST	-Y,R31
+    004A5 B60F      IN	R0,0x3F
+    004A6 920A      ST	-Y,R0
+(0086) #pragma interrupt_handler right:iv_EXT_INT3
+(0087) void right(void)
+(0088) {
+(0089)         SREG &=0X7f;
+    004A7 94F8      BCLR	7
+(0090)         GLCD_dselect(x,y);
+    004A8 9120 0103 LDS	R18,_y
+    004AA 9100 0101 LDS	R16,_x
+    004AC DF23      RCALL	_GLCD_dselect
+(0091)         x+=11;
+    004AD 9180 0101 LDS	R24,_x
+    004AF 9190 0102 LDS	R25,_x+1
+    004B1 960B      ADIW	R24,0xB
+    004B2 9390 0102 STS	_x+1,R25
+    004B4 9380 0101 STS	_x,R24
+(0092)         if(x>165)    x=66;
+    004B6 EA85      LDI	R24,0xA5
+    004B7 E090      LDI	R25,0
+    004B8 9020 0101 LDS	R2,_x
+    004BA 9030 0102 LDS	R3,_x+1
+    004BC 1582      CP	R24,R2
+    004BD 0593      CPC	R25,R3
+    004BE F42C      BGE	0x04C4
+    004BF E482      LDI	R24,0x42
+    004C0 9390 0102 STS	_x+1,R25
+    004C2 9380 0101 STS	_x,R24
+(0093) 
+(0094)         GLCD_select(x,y);
+    004C4 9120 0103 LDS	R18,_y
+    004C6 9100 0101 LDS	R16,_x
+    004C8 DEEA      RCALL	_GLCD_select
+(0095)         delay_ms(300);
+    004C9 E20C      LDI	R16,0x2C
+    004CA E011      LDI	R17,1
+    004CB DEB0      RCALL	_delay_ms
+    004CC 9009      LD	R0,Y+
+    004CD BE0F      OUT	0x3F,R0
+    004CE 91F9      LD	R31,Y+
+    004CF 91E9      LD	R30,Y+
+    004D0 91B9      LD	R27,Y+
+    004D1 91A9      LD	R26,Y+
+    004D2 9199      LD	R25,Y+
+    004D3 9189      LD	R24,Y+
+    004D4 9139      LD	R19,Y+
+    004D5 9129      LD	R18,Y+
+    004D6 9119      LD	R17,Y+
+    004D7 9109      LD	R16,Y+
+    004D8 9099      LD	R9,Y+
+    004D9 9089      LD	R8,Y+
+    004DA 9079      LD	R7,Y+
+    004DB 9069      LD	R6,Y+
+    004DC 9059      LD	R5,Y+
+    004DD 9049      LD	R4,Y+
+    004DE 9039      LD	R3,Y+
+    004DF 9029      LD	R2,Y+
+    004E0 9019      LD	R1,Y+
+    004E1 9009      LD	R0,Y+
+    004E2 9518      RETI
+(0096) }
+    004E3 920A      ST	-Y,R0
+    004E4 921A      ST	-Y,R1
+    004E5 922A      ST	-Y,R2
+    004E6 923A      ST	-Y,R3
+    004E7 924A      ST	-Y,R4
+    004E8 925A      ST	-Y,R5
+    004E9 926A      ST	-Y,R6
+    004EA 927A      ST	-Y,R7
+    004EB 928A      ST	-Y,R8
+    004EC 929A      ST	-Y,R9
+    004ED 930A      ST	-Y,R16
+    004EE 931A      ST	-Y,R17
+    004EF 932A      ST	-Y,R18
+    004F0 933A      ST	-Y,R19
+    004F1 938A      ST	-Y,R24
+    004F2 939A      ST	-Y,R25
+    004F3 93AA      ST	-Y,R26
+    004F4 93BA      ST	-Y,R27
+    004F5 93EA      ST	-Y,R30
+    004F6 93FA      ST	-Y,R31
+    004F7 B60F      IN	R0,0x3F
+    004F8 920A      ST	-Y,R0
+(0097) #pragma interrupt_handler left:iv_EXT_INT2
+(0098) void left(void)
+(0099) {
+(0100)         SREG &=0X7f;
+    004F9 94F8      BCLR	7
+(0101)         GLCD_dselect(x,y);
+    004FA 9120 0103 LDS	R18,_y
+    004FC 9100 0101 LDS	R16,_x
+    004FE DED1      RCALL	_GLCD_dselect
+(0102)         x=x-11;
+    004FF 9180 0101 LDS	R24,_x
+    00501 9190 0102 LDS	R25,_x+1
+    00503 970B      SBIW	R24,0xB
+    00504 9390 0102 STS	_x+1,R25
+    00506 9380 0101 STS	_x,R24
+(0103)         if(x<66)    x=165;
+    00508 9180 0101 LDS	R24,_x
+    0050A 9190 0102 LDS	R25,_x+1
+    0050C 3482      CPI	R24,0x42
+    0050D E0E0      LDI	R30,0
+    0050E 079E      CPC	R25,R30
+    0050F F434      BGE	0x0516
+    00510 EA85      LDI	R24,0xA5
+    00511 E090      LDI	R25,0
+    00512 9390 0102 STS	_x+1,R25
+    00514 9380 0101 STS	_x,R24
+(0104) 
+(0105)         GLCD_select(x,y);
+    00516 9120 0103 LDS	R18,_y
+    00518 9100 0101 LDS	R16,_x
+    0051A DE98      RCALL	_GLCD_select
+(0106)         delay_ms(300);
+    0051B E20C      LDI	R16,0x2C
+    0051C E011      LDI	R17,1
+    0051D DE5E      RCALL	_delay_ms
+    0051E 9009      LD	R0,Y+
+    0051F BE0F      OUT	0x3F,R0
+    00520 91F9      LD	R31,Y+
+    00521 91E9      LD	R30,Y+
+    00522 91B9      LD	R27,Y+
+    00523 91A9      LD	R26,Y+
+    00524 9199      LD	R25,Y+
+    00525 9189      LD	R24,Y+
+    00526 9139      LD	R19,Y+
+    00527 9129      LD	R18,Y+
+    00528 9119      LD	R17,Y+
+    00529 9109      LD	R16,Y+
+    0052A 9099      LD	R9,Y+
+    0052B 9089      LD	R8,Y+
+    0052C 9079      LD	R7,Y+
+    0052D 9069      LD	R6,Y+
+    0052E 9059      LD	R5,Y+
+    0052F 9049      LD	R4,Y+
+    00530 9039      LD	R3,Y+
+    00531 9029      LD	R2,Y+
+    00532 9019      LD	R1,Y+
+    00533 9009      LD	R0,Y+
+    00534 9518      RETI
+(0107) }
+(0108) 
+(0109) 
+(0110) int main(void)
+(0111) {
+(0112)     DDRD=0x00;
+    00535 2422      CLR	R2
+    00536 BA21      OUT	0x11,R2
+(0113)     DDRA=0xff;
+    00537 EF8F      LDI	R24,0xFF
+    00538 BB8A      OUT	0x1A,R24
+(0114)     UCSR0A=0x02;
+    00539 E082      LDI	R24,2
+    0053A B98B      OUT	0x0B,R24
+(0115)     UCSR0B=0x98;
+    0053B E988      LDI	R24,0x98
+    0053C B98A      OUT	0x0A,R24
+(0116)     UCSR0C=0x06;
+    0053D E086      LDI	R24,6
+    0053E 9380 0095 STS	0x95,R24
+(0117)     DDRE = 0xFE;  //시리얼통신을 위해 PE0핀은 RXD0로서 입력으로 설정하고, PE1 핀은 TXD0로서 출력으로 설정
+    00540 EF8E      LDI	R24,0xFE
+    00541 B982      OUT	0x02,R24
+(0118)   UBRR0H = baudrate[2]>>8; // 보레이트 설정 9600 bps
+    00542 9020 0109 LDS	R2,_baudrate+4
+    00544 9030 010A LDS	R3,_baudrate+5
+    00546 2C23      MOV	R2,R3
+    00547 2433      CLR	R3
+    00548 9220 0090 STS	0x90,R2
+(0119)   UBRR0L = baudrate[2];
+    0054A 9020 0109 LDS	R2,_baudrate+4
+    0054C B829      OUT	0x09,R2
+(0120)     EIMSK = 0x1f;
+    0054D E18F      LDI	R24,0x1F
+    0054E BF89      OUT	0x39,R24
+(0121)     EICRA = 0xaa;
+    0054F EA8A      LDI	R24,0xAA
+    00550 9380 006A STS	0x6A,R24
+(0122)     EICRB = 0x02;
+    00552 E082      LDI	R24,2
+    00553 BF8A      OUT	0x3A,R24
+(0123)     SREG |=0X80;
+    00554 9478      BSET	7
+(0124) 
+(0125)     int i=0;
+    00555 24AA      CLR	R10
+    00556 24BB      CLR	R11
+(0126)     GLCD_Initialize();
+    00557 DDFB      RCALL	_GLCD_Initialize
+(0127)     GLCD_Clear();
+    00558 DE39      RCALL	_GLCD_Clear
+(0128)      BUFF="blue";
+    00559 E283      LDI	R24,0x23
+    0055A E091      LDI	R25,1
+    0055B 9390 0129 STS	_BUFF+1,R25
+    0055D 9380 0128 STS	_BUFF,R24
+    0055F C005      RJMP	0x0565
+(0129)     while(1)
+(0130)     {
+(0131)     tx_string(BUFF);
+    00560 9100 0128 LDS	R16,_BUFF
+    00562 9110 0129 LDS	R17,_BUFF+1
+    00564 DE34      RCALL	_tx_string
+    00565 CFFA      RJMP	0x0560
+(0132)     }
+(0133)     return 0;
+(0134) }
+    00566 9508      RET
+    00567 933A      ST	-Y,R19
+    00568 932A      ST	-Y,R18

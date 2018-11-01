@@ -1,0 +1,2043 @@
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile C:\avr\exhibition\exhibition1\main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile C:\avr\exhibition\exhibition1\main.c
+ 0000           _color#Kh::
+ 0000                   .blkb 1
+                        .area idata(rom)
+ 0000 01                .byte 1
+                        .area data(ram, con, rel)
+ 0001                   .dbfile C:\avr\exhibition\exhibition1\main.c
+ 0001                   .dbfile C:\avr\exhibition\exhibition1\graphic.h
+ 0001                   .dbsym e color _color#Kh c
+ 0001           _x#Vi::
+ 0001                   .blkb 2
+                        .area idata(rom)
+ 0001 4200              .word 66
+                        .area data(ram, con, rel)
+ 0003                   .dbfile C:\avr\exhibition\exhibition1\graphic.h
+ 0003                   .dbfile C:\avr\exhibition\exhibition1\main.c
+ 0003                   .dbsym e x _x#Vi I
+ 0003           _y#Vi::
+ 0003                   .blkb 2
+                        .area idata(rom)
+ 0003 1300              .word 19
+                        .area data(ram, con, rel)
+ 0005                   .dbfile C:\avr\exhibition\exhibition1\main.c
+ 0005                   .dbsym e y _y#Vi I
+ 0005           _baudrate#A15_j::
+ 0005                   .blkb 2
+                        .area idata(rom)
+ 0005 4003              .word 832
+                        .area data(ram, con, rel)
+ 0007                   .dbfile C:\avr\exhibition\exhibition1\main.c
+ 0007                   .blkb 2
+                        .area idata(rom)
+ 0007 A001              .word 416
+                        .area data(ram, con, rel)
+ 0009                   .dbfile C:\avr\exhibition\exhibition1\main.c
+ 0009                   .blkb 2
+                        .area idata(rom)
+ 0009 CF00              .word 207
+                        .area data(ram, con, rel)
+ 000B                   .dbfile C:\avr\exhibition\exhibition1\main.c
+ 000B                   .blkb 2
+                        .area idata(rom)
+ 000B 8A00              .word 138
+                        .area data(ram, con, rel)
+ 000D                   .dbfile C:\avr\exhibition\exhibition1\main.c
+ 000D                   .blkb 2
+                        .area idata(rom)
+ 000D 6700              .word 103
+                        .area data(ram, con, rel)
+ 000F                   .dbfile C:\avr\exhibition\exhibition1\main.c
+ 000F                   .blkb 2
+                        .area idata(rom)
+ 000F 4400              .word 68
+                        .area data(ram, con, rel)
+ 0011                   .dbfile C:\avr\exhibition\exhibition1\main.c
+ 0011                   .blkb 2
+                        .area idata(rom)
+ 0011 3300              .word 51
+                        .area data(ram, con, rel)
+ 0013                   .dbfile C:\avr\exhibition\exhibition1\main.c
+ 0013                   .blkb 2
+                        .area idata(rom)
+ 0013 2200              .word 34
+                        .area data(ram, con, rel)
+ 0015                   .dbfile C:\avr\exhibition\exhibition1\main.c
+ 0015                   .blkb 2
+                        .area idata(rom)
+ 0015 1900              .word 25
+                        .area data(ram, con, rel)
+ 0017                   .dbfile C:\avr\exhibition\exhibition1\main.c
+ 0017                   .blkb 2
+                        .area idata(rom)
+ 0017 1000              .word 16
+                        .area data(ram, con, rel)
+ 0019                   .dbfile C:\avr\exhibition\exhibition1\main.c
+ 0019                   .blkb 2
+                        .area idata(rom)
+ 0019 0800              .word 8
+                        .area data(ram, con, rel)
+ 001B                   .dbfile C:\avr\exhibition\exhibition1\main.c
+ 001B                   .blkb 2
+                        .area idata(rom)
+ 001B 0700              .word 7
+                        .area data(ram, con, rel)
+ 001D                   .dbfile C:\avr\exhibition\exhibition1\main.c
+ 001D                   .blkb 2
+                        .area idata(rom)
+ 001D 0300              .word 3
+                        .area data(ram, con, rel)
+ 001F                   .dbfile C:\avr\exhibition\exhibition1\main.c
+ 001F                   .blkb 2
+                        .area idata(rom)
+ 001F 0100              .word 1
+                        .area data(ram, con, rel)
+ 0021                   .dbfile C:\avr\exhibition\exhibition1\main.c
+ 0021                   .blkb 2
+                        .area idata(rom)
+ 0021 0000              .word 0
+                        .area data(ram, con, rel)
+ 0023                   .dbfile C:\avr\exhibition\exhibition1\main.c
+ 0023                   .dbsym e baudrate _baudrate#A15_j A[30:15]i
+                        .area vector(rom, abs)
+                        .org 120
+ 0078 0C940000          jmp _Bluetooth
+                        .area data(ram, con, rel)
+ 0023                   .dbfile C:\avr\exhibition\exhibition1\main.c
+                        .area vector(rom, abs)
+                        .org 4
+ 0004 0C940000          jmp _up
+                        .area data(ram, con, rel)
+ 0023                   .dbfile C:\avr\exhibition\exhibition1\main.c
+                        .area vector(rom, abs)
+                        .org 8
+ 0008 0C940000          jmp _down
+                        .area data(ram, con, rel)
+ 0023                   .dbfile C:\avr\exhibition\exhibition1\main.c
+                        .area vector(rom, abs)
+                        .org 16
+ 0010 0C940000          jmp _right
+                        .area data(ram, con, rel)
+ 0023                   .dbfile C:\avr\exhibition\exhibition1\main.c
+                        .area vector(rom, abs)
+                        .org 12
+ 000C 0C940000          jmp _left
+                        .area data(ram, con, rel)
+ 0023                   .dbfile C:\avr\exhibition\exhibition1\main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile C:\avr\exhibition\exhibition1\main.c
+ 0000                   .dbfile C:\avr\exhibition\exhibition1\graphic.h
+ 0000                   .dbfunc e GLCD_Rectangle _GLCD_Rectangle#Fvhhhh fV 6
+ 0000           ;              j -> R10
+ 0000           ;              a -> R20
+ 0000           ;              b -> R22
+ 0000           ;              y -> R14
+ 0000           ;              x -> R12
+                        .even
+ 0000           _GLCD_Rectangle#Fvhhhh::
+ 0000 0E940000          xcall push_xgsetF0FC
+ 0004 E22E              mov R14,R18
+ 0006 C02E              mov R12,R16
+ 0008 2197              sbiw R28,1
+ 000A 6B85              ldd R22,y+11
+ 000C 4D85              ldd R20,y+13
+ 000E                   .dbblock 7
+ 000E                   .dbline 10
+ 000E AA24              clr R10
+ 0010 11C0              xjmp L5
+ 0012           L2:
+ 0012                   .dbline 11
+ 0012 20900000          lds R2,_color#Kh
+ 0016 2882              std y+0,R2
+ 0018 2E2D              mov R18,R14
+ 001A 2A0D              add R18,R10
+ 001C 0C2D              mov R16,R12
+ 001E 38D2              xcall _GLCD_SetPixel#Fvccc
+ 0020                   .dbline 12
+ 0020 20900000          lds R2,_color#Kh
+ 0024 2882              std y+0,R2
+ 0026 2E2D              mov R18,R14
+ 0028 2A0D              add R18,R10
+ 002A 0C2D              mov R16,R12
+ 002C 060F              add R16,R22
+ 002E 0150              subi R16,1
+ 0030 2FD2              xcall _GLCD_SetPixel#Fvccc
+ 0032           L3:
+ 0032                   .dbline 10
+ 0032 A394              inc R10
+ 0034           L5:
+ 0034                   .dbline 10
+ 0034 A416              cp R10,R20
+ 0036 68F3              brlo L2
+ 0038           X0:
+ 0038                   .dbline 15
+ 0038 AA24              clr R10
+ 003A 11C0              xjmp L9
+ 003C           L6:
+ 003C                   .dbline 16
+ 003C 20900000          lds R2,_color#Kh
+ 0040 2882              std y+0,R2
+ 0042 2E2D              mov R18,R14
+ 0044 0C2D              mov R16,R12
+ 0046 0A0D              add R16,R10
+ 0048 23D2              xcall _GLCD_SetPixel#Fvccc
+ 004A                   .dbline 17
+ 004A 20900000          lds R2,_color#Kh
+ 004E 2882              std y+0,R2
+ 0050 2E2D              mov R18,R14
+ 0052 240F              add R18,R20
+ 0054 2150              subi R18,1
+ 0056 0C2D              mov R16,R12
+ 0058 0A0D              add R16,R10
+ 005A 1AD2              xcall _GLCD_SetPixel#Fvccc
+ 005C           L7:
+ 005C                   .dbline 15
+ 005C A394              inc R10
+ 005E           L9:
+ 005E                   .dbline 15
+ 005E A616              cp R10,R22
+ 0060 68F3              brlo L6
+ 0062           X1:
+ 0062                   .dbblkend 19
+ 0062           L1:
+ 0062 2196              adiw R28,1
+ 0064 0C940000          xjmp pop_xgsetF0FC
+ 0068 0895              ret
+ 006A                   .dbfuncend
+ 006A                   .dbsym r j 10 c
+ 006A                   .dbsym r a 20 c
+ 006A                   .dbsym r b 22 c
+ 006A                   .dbsym r y 14 c
+ 006A                   .dbsym r x 12 c
+ 006A                   .dbstacksize 5
+ 006A                   .dbfunc e GLCD_Circle _GLCD_Circle#Fvhhh fV 22
+ 006A           ;        ychange -> R12,R13
+ 006A           ;        xchange -> R14,R15
+ 006A           ;    radiusError -> R10,R11
+ 006A           ;              x -> R20,R21
+ 006A           ;              y -> R22,R23
+ 006A           ;         radius -> R10
+ 006A           ;             cy -> y+13
+ 006A           ;             cx -> y+11
+                        .even
+ 006A           _GLCD_Circle#Fvhhh::
+ 006A 0E940000          xcall push_arg4
+ 006E 0E940000          xcall push_xgsetF0FC
+ 0072 2197              sbiw R28,1
+ 0074 AF84              ldd R10,y+15
+ 0076                   .dbblock 23
+ 0076                   .dbline 25
+ 0076 4A2D              mov R20,R10
+ 0078 5527              clr R21
+ 007A                   .dbline 26
+ 007A 6627              clr R22
+ 007C 7727              clr R23
+ 007E                   .dbline 27
+ 007E 2A2C              mov R2,R10
+ 0080 3324              clr R3
+ 0082 220C              lsl R2
+ 0084 331C              rol R3
+ 0086 81E0              ldi R24,1
+ 0088 90E0              ldi R25,0
+ 008A 7C01              movw R14,R24
+ 008C E218              sub R14,R2
+ 008E F308              sbc R15,R3
+ 0090                   .dbline 28
+ 0090 6C01              movw R12,R24
+ 0092                   .dbline 29
+ 0092 AA24              clr R10
+ 0094 BB24              clr R11
+ 0096 58C0              xjmp L12
+ 0098           L11:
+ 0098                   .dbline 32
+ 0098 20900000          lds R2,_color#Kh
+ 009C 2882              std y+0,R2
+ 009E 2D85              ldd R18,y+13
+ 00A0 260F              add R18,R22
+ 00A2 0B85              ldd R16,y+11
+ 00A4 040F              add R16,R20
+ 00A6 F4D1              xcall _GLCD_SetPixel#Fvccc
+ 00A8                   .dbline 33
+ 00A8 20900000          lds R2,_color#Kh
+ 00AC 2882              std y+0,R2
+ 00AE 2D85              ldd R18,y+13
+ 00B0 260F              add R18,R22
+ 00B2 0B85              ldd R16,y+11
+ 00B4 041B              sub R16,R20
+ 00B6 ECD1              xcall _GLCD_SetPixel#Fvccc
+ 00B8                   .dbline 34
+ 00B8 20900000          lds R2,_color#Kh
+ 00BC 2882              std y+0,R2
+ 00BE 2D85              ldd R18,y+13
+ 00C0 261B              sub R18,R22
+ 00C2 0B85              ldd R16,y+11
+ 00C4 041B              sub R16,R20
+ 00C6 E4D1              xcall _GLCD_SetPixel#Fvccc
+ 00C8                   .dbline 35
+ 00C8 20900000          lds R2,_color#Kh
+ 00CC 2882              std y+0,R2
+ 00CE 2D85              ldd R18,y+13
+ 00D0 261B              sub R18,R22
+ 00D2 0B85              ldd R16,y+11
+ 00D4 040F              add R16,R20
+ 00D6 DCD1              xcall _GLCD_SetPixel#Fvccc
+ 00D8                   .dbline 36
+ 00D8 20900000          lds R2,_color#Kh
+ 00DC 2882              std y+0,R2
+ 00DE 2D85              ldd R18,y+13
+ 00E0 240F              add R18,R20
+ 00E2 0B85              ldd R16,y+11
+ 00E4 060F              add R16,R22
+ 00E6 D4D1              xcall _GLCD_SetPixel#Fvccc
+ 00E8                   .dbline 37
+ 00E8 20900000          lds R2,_color#Kh
+ 00EC 2882              std y+0,R2
+ 00EE 2D85              ldd R18,y+13
+ 00F0 240F              add R18,R20
+ 00F2 0B85              ldd R16,y+11
+ 00F4 061B              sub R16,R22
+ 00F6 CCD1              xcall _GLCD_SetPixel#Fvccc
+ 00F8                   .dbline 38
+ 00F8 20900000          lds R2,_color#Kh
+ 00FC 2882              std y+0,R2
+ 00FE 2D85              ldd R18,y+13
+ 0100 241B              sub R18,R20
+ 0102 0B85              ldd R16,y+11
+ 0104 061B              sub R16,R22
+ 0106 C4D1              xcall _GLCD_SetPixel#Fvccc
+ 0108                   .dbline 39
+ 0108 20900000          lds R2,_color#Kh
+ 010C 2882              std y+0,R2
+ 010E 2D85              ldd R18,y+13
+ 0110 241B              sub R18,R20
+ 0112 0B85              ldd R16,y+11
+ 0114 060F              add R16,R22
+ 0116 BCD1              xcall _GLCD_SetPixel#Fvccc
+ 0118                   .dbline 40
+ 0118 6F5F              subi R22,255  ; offset = 1
+ 011A 7F4F              sbci R23,255
+ 011C                   .dbline 41
+ 011C AC0C              add R10,R12
+ 011E BD1C              adc R11,R13
+ 0120                   .dbline 42
+ 0120 C601              movw R24,R12
+ 0122 0296              adiw R24,2
+ 0124 6C01              movw R12,R24
+ 0126                   .dbline 43
+ 0126 1501              movw R2,R10
+ 0128 220C              lsl R2
+ 012A 331C              rol R3
+ 012C 2E0C              add R2,R14
+ 012E 3F1C              adc R3,R15
+ 0130 4424              clr R4
+ 0132 5524              clr R5
+ 0134 4214              cp R4,R2
+ 0136 5304              cpc R5,R3
+ 0138 3CF4              brge L14
+ 013A           X2:
+ 013A                   .dbline 45
+ 013A 4150              subi R20,1
+ 013C 5040              sbci R21,0
+ 013E                   .dbline 46
+ 013E AE0C              add R10,R14
+ 0140 BF1C              adc R11,R15
+ 0142                   .dbline 47
+ 0142 C701              movw R24,R14
+ 0144 0296              adiw R24,2
+ 0146 7C01              movw R14,R24
+ 0148           L14:
+ 0148           L12:
+ 0148                   .dbline 30
+ 0148 4617              cp R20,R22
+ 014A 5707              cpc R21,R23
+ 014C 0CF0              brlt X4
+ 014E A4CF              xjmp L11
+ 0150           X4:
+ 0150           X3:
+ 0150                   .dbblkend 50
+ 0150           L10:
+ 0150 2196              adiw R28,1
+ 0152 0E940000          xcall pop_xgsetF0FC
+ 0156 2496              adiw R28,4
+ 0158 0895              ret
+ 015A                   .dbfuncend
+ 015A                   .dbsym r ychange 12 I
+ 015A                   .dbsym r xchange 14 I
+ 015A                   .dbsym r radiusError 10 I
+ 015A                   .dbsym r x 20 I
+ 015A                   .dbsym r y 22 I
+ 015A                   .dbsym r radius 10 c
+ 015A                   .dbsym l cy 13 c
+ 015A                   .dbsym l cx 11 c
+ 015A                   .dbstacksize 9
+ 015A                   .dbfunc e GLCD_Line _GLCD_Line#Fviiii fV 53
+ 015A           ;           Yinc -> R22,R23
+ 015A           ;           Xinc -> R20,R21
+ 015A           ;          TwoDy -> y+7
+ 015A           ;          TwoDx -> y+5
+ 015A           ; TwoDyAccumulatedError -> R14,R15
+ 015A           ; TwoDxAccumulatedError -> R14,R15
+ 015A           ;             Dy -> y+3
+ 015A           ;             Dx -> y+1
+ 015A           ;       CurrentY -> R12,R13
+ 015A           ;       CurrentX -> R10,R11
+ 015A           ;             Y2 -> y+25
+ 015A           ;             X2 -> y+23
+ 015A           ;             Y1 -> R14,R15
+ 015A           ;             X1 -> y+19
+                        .even
+ 015A           _GLCD_Line#Fviiii::
+ 015A 0E940000          xcall push_arg4
+ 015E 0E940000          xcall push_xgsetF0FC
+ 0162 7901              movw R14,R18
+ 0164 2997              sbiw R28,9
+ 0166                   .dbblock 54
+ 0166                   .dbline 59
+ 0166 2F88              ldd R2,y+23
+ 0168 388C              ldd R3,y+24
+ 016A 0B88              ldd R0,y+19
+ 016C 1C88              ldd R1,y+20
+ 016E 2018              sub R2,R0
+ 0170 3108              sbc R3,R1
+ 0172 3A82              std y+2,R3
+ 0174 2982              std y+1,R2
+ 0176                   .dbline 60
+ 0176 298C              ldd R2,y+25
+ 0178 3A8C              ldd R3,y+26
+ 017A 2E18              sub R2,R14
+ 017C 3F08              sbc R3,R15
+ 017E 3C82              std y+4,R3
+ 0180 2B82              std y+3,R2
+ 0182                   .dbline 62
+ 0182 2980              ldd R2,y+1
+ 0184 3A80              ldd R3,y+2
+ 0186 0101              movw R0,R2
+ 0188 200C              add R2,R0
+ 018A 311C              adc R3,R1
+ 018C 3E82              std y+6,R3
+ 018E 2D82              std y+5,R2
+ 0190                   .dbline 63
+ 0190 2B80              ldd R2,y+3
+ 0192 3C80              ldd R3,y+4
+ 0194 0101              movw R0,R2
+ 0196 200C              add R2,R0
+ 0198 311C              adc R3,R1
+ 019A 3886              std y+8,R3
+ 019C 2F82              std y+7,R2
+ 019E                   .dbline 65
+ 019E AB88              ldd R10,y+19
+ 01A0 BC88              ldd R11,y+20
+ 01A2                   .dbline 66
+ 01A2 6701              movw R12,R14
+ 01A4                   .dbline 68
+ 01A4 41E0              ldi R20,1
+ 01A6 50E0              ldi R21,0
+ 01A8                   .dbline 69
+ 01A8 61E0              ldi R22,1
+ 01AA 70E0              ldi R23,0
+ 01AC                   .dbline 71
+ 01AC 8981              ldd R24,y+1
+ 01AE 9A81              ldd R25,y+2
+ 01B0 8030              cpi R24,0
+ 01B2 E0E0              ldi R30,0
+ 01B4 9E07              cpc R25,R30
+ 01B6 84F4              brge L17
+ 01B8           X5:
+ 01B8                   .dbline 73
+ 01B8 4FEF              ldi R20,-1
+ 01BA 5FEF              ldi R21,-1
+ 01BC                   .dbline 74
+ 01BC 8095              com R24
+ 01BE 9095              com R25
+ 01C0 8F5F              subi R24,0xFF
+ 01C2 9F4F              sbci R25,0xFF
+ 01C4 9A83              std y+2,R25
+ 01C6 8983              std y+1,R24
+ 01C8                   .dbline 75
+ 01C8 8D81              ldd R24,y+5
+ 01CA 9E81              ldd R25,y+6
+ 01CC 8095              com R24
+ 01CE 9095              com R25
+ 01D0 8F5F              subi R24,0xFF
+ 01D2 9F4F              sbci R25,0xFF
+ 01D4 9E83              std y+6,R25
+ 01D6 8D83              std y+5,R24
+ 01D8           L17:
+ 01D8                   .dbline 78
+ 01D8 8B81              ldd R24,y+3
+ 01DA 9C81              ldd R25,y+4
+ 01DC 8030              cpi R24,0
+ 01DE E0E0              ldi R30,0
+ 01E0 9E07              cpc R25,R30
+ 01E2 84F4              brge L19
+ 01E4           X6:
+ 01E4                   .dbline 80
+ 01E4 6FEF              ldi R22,-1
+ 01E6 7FEF              ldi R23,-1
+ 01E8                   .dbline 81
+ 01E8 8095              com R24
+ 01EA 9095              com R25
+ 01EC 8F5F              subi R24,0xFF
+ 01EE 9F4F              sbci R25,0xFF
+ 01F0 9C83              std y+4,R25
+ 01F2 8B83              std y+3,R24
+ 01F4                   .dbline 82
+ 01F4 8F81              ldd R24,y+7
+ 01F6 9885              ldd R25,y+8
+ 01F8 8095              com R24
+ 01FA 9095              com R25
+ 01FC 8F5F              subi R24,0xFF
+ 01FE 9F4F              sbci R25,0xFF
+ 0200 9887              std y+8,R25
+ 0202 8F83              std y+7,R24
+ 0204           L19:
+ 0204                   .dbline 85
+ 0204 20900000          lds R2,_color#Kh
+ 0208 2882              std y+0,R2
+ 020A 2E2D              mov R18,R14
+ 020C 0B89              ldd R16,y+19
+ 020E 40D1              xcall _GLCD_SetPixel#Fvccc
+ 0210                   .dbline 87
+ 0210 0980              ldd R0,y+1
+ 0212 1A80              ldd R1,y+2
+ 0214 0020              tst R0
+ 0216 49F4              brne L23
+ 0218 1120              tst R1
+ 021A 39F4              brne L23
+ 021C           X7:
+ 021C 0B80              ldd R0,y+3
+ 021E 1C80              ldd R1,y+4
+ 0220 0020              tst R0
+ 0222 19F4              brne X8
+ 0224 1120              tst R1
+ 0226 09F4              brne X14
+ 0228 44C0              xjmp L21
+ 022A           X14:
+ 022A           X8:
+ 022A           L23:
+ 022A                   .dbline 90
+ 022A 0980              ldd R0,y+1
+ 022C 1A80              ldd R1,y+2
+ 022E 0B81              ldd R16,y+3
+ 0230 1C81              ldd R17,y+4
+ 0232 0016              cp R0,R16
+ 0234 1106              cpc R1,R17
+ 0236 FCF0              brlt L24
+ 0238           X9:
+ 0238                   .dbline 92
+ 0238 EE24              clr R14
+ 023A FF24              clr R15
+ 023C           L26:
+ 023C                   .dbline 95
+ 023C A40E              add R10,R20
+ 023E B51E              adc R11,R21
+ 0240                   .dbline 96
+ 0240 0F80              ldd R0,y+7
+ 0242 1884              ldd R1,y+8
+ 0244 E00C              add R14,R0
+ 0246 F11C              adc R15,R1
+ 0248                   .dbline 97
+ 0248 0980              ldd R0,y+1
+ 024A 1A80              ldd R1,y+2
+ 024C 0E14              cp R0,R14
+ 024E 1F04              cpc R1,R15
+ 0250 34F4              brge L29
+ 0252           X10:
+ 0252                   .dbline 99
+ 0252 C60E              add R12,R22
+ 0254 D71E              adc R13,R23
+ 0256                   .dbline 100
+ 0256 0D80              ldd R0,y+5
+ 0258 1E80              ldd R1,y+6
+ 025A E018              sub R14,R0
+ 025C F108              sbc R15,R1
+ 025E           L29:
+ 025E                   .dbline 102
+ 025E 20900000          lds R2,_color#Kh
+ 0262 2882              std y+0,R2
+ 0264 2C2D              mov R18,R12
+ 0266 0A2D              mov R16,R10
+ 0268 13D1              xcall _GLCD_SetPixel#Fvccc
+ 026A           L27:
+ 026A                   .dbline 103
+ 026A 0F88              ldd R0,y+23
+ 026C 188C              ldd R1,y+24
+ 026E A014              cp R10,R0
+ 0270 B104              cpc R11,R1
+ 0272 21F7              brne L26
+ 0274           X11:
+ 0274                   .dbline 104
+ 0274 1EC0              xjmp L25
+ 0276           L24:
+ 0276                   .dbline 107
+ 0276 EE24              clr R14
+ 0278 FF24              clr R15
+ 027A           L31:
+ 027A                   .dbline 110
+ 027A C60E              add R12,R22
+ 027C D71E              adc R13,R23
+ 027E                   .dbline 111
+ 027E 0D80              ldd R0,y+5
+ 0280 1E80              ldd R1,y+6
+ 0282 E00C              add R14,R0
+ 0284 F11C              adc R15,R1
+ 0286                   .dbline 112
+ 0286 0B80              ldd R0,y+3
+ 0288 1C80              ldd R1,y+4
+ 028A 0E14              cp R0,R14
+ 028C 1F04              cpc R1,R15
+ 028E 34F4              brge L34
+ 0290           X12:
+ 0290                   .dbline 114
+ 0290 A40E              add R10,R20
+ 0292 B51E              adc R11,R21
+ 0294                   .dbline 115
+ 0294 0F80              ldd R0,y+7
+ 0296 1884              ldd R1,y+8
+ 0298 E018              sub R14,R0
+ 029A F108              sbc R15,R1
+ 029C           L34:
+ 029C                   .dbline 117
+ 029C 20900000          lds R2,_color#Kh
+ 02A0 2882              std y+0,R2
+ 02A2 2C2D              mov R18,R12
+ 02A4 0A2D              mov R16,R10
+ 02A6 F4D0              xcall _GLCD_SetPixel#Fvccc
+ 02A8           L32:
+ 02A8                   .dbline 118
+ 02A8 098C              ldd R0,y+25
+ 02AA 1A8C              ldd R1,y+26
+ 02AC C014              cp R12,R0
+ 02AE D104              cpc R13,R1
+ 02B0 21F7              brne L31
+ 02B2           X13:
+ 02B2           L25:
+ 02B2           L21:
+ 02B2                   .dbblkend 121
+ 02B2           L16:
+ 02B2 2996              adiw R28,9
+ 02B4 0E940000          xcall pop_xgsetF0FC
+ 02B8 2496              adiw R28,4
+ 02BA 0895              ret
+ 02BC                   .dbfuncend
+ 02BC                   .dbsym r Yinc 22 I
+ 02BC                   .dbsym r Xinc 20 I
+ 02BC                   .dbsym l TwoDy 7 I
+ 02BC                   .dbsym l TwoDx 5 I
+ 02BC                   .dbsym r TwoDyAccumulatedError 14 I
+ 02BC                   .dbsym r TwoDxAccumulatedError 14 I
+ 02BC                   .dbsym l Dy 3 I
+ 02BC                   .dbsym l Dx 1 I
+ 02BC                   .dbsym r CurrentY 12 I
+ 02BC                   .dbsym r CurrentX 10 I
+ 02BC                   .dbsym l Y2 25 I
+ 02BC                   .dbsym l X2 23 I
+ 02BC                   .dbsym r Y1 14 I
+ 02BC                   .dbsym l X1 19 I
+ 02BC                   .dbstacksize 17
+ 02BC                   .dbfile C:\avr\exhibition\exhibition1\t6963c.h
+ 02BC                   .dbfunc e delay _delay#Fvv fV 108
+ 02BC           ;              i -> y+0
+                        .even
+ 02BC           _delay#Fvv::
+ 02BC 2197              sbiw R28,1
+ 02BE                   .dbblock 109
+ 02BE                   .dbline 111
+ 02BE 2224              clr R2
+ 02C0 2882              std y+0,R2
+ 02C2 04C0              xjmp L40
+ 02C4           L37:
+ 02C4                   .dbline 113
+ 02C4 0000              nop
+ 02C6           L38:
+ 02C6                   .dbline 111
+ 02C6 8881              ldd R24,y+0
+ 02C8 8F5F              subi R24,255    ; addi 1
+ 02CA 8883              std y+0,R24
+ 02CC           L40:
+ 02CC                   .dbline 111
+ 02CC 8881              ldd R24,y+0
+ 02CE 8031              cpi R24,16
+ 02D0 C8F3              brlo L37
+ 02D2           X15:
+ 02D2                   .dbblkend 115
+ 02D2           L36:
+ 02D2 2196              adiw R28,1
+ 02D4 0895              ret
+ 02D6                   .dbfuncend
+ 02D6                   .dbsym l i 0 c
+ 02D6                   .dbstacksize -1
+ 02D6                   .dbfunc e GLCD_InitializeInterface _GLCD_InitializeInterface#Fvv fV 121
+                        .even
+ 02D6           _GLCD_InitializeInterface#Fvv::
+ 02D6                   .dbblock 122
+ 02D6                   .dbline 123
+ 02D6 8FEF              ldi R24,255
+ 02D8 8ABB              out 0x1a,R24
+ 02DA                   .dbline 124
+ 02DA 8FE3              ldi R24,63
+ 02DC 84BB              out 0x14,R24
+ 02DE                   .dbline 125
+ 02DE 85B3              in R24,0x15
+ 02E0 8F63              ori R24,63
+ 02E2 85BB              out 0x15,R24
+ 02E4                   .dbblkend 126
+ 02E4           L41:
+ 02E4 0895              ret
+ 02E6                   .dbfuncend
+ 02E6                   .dbstacksize -2
+ 02E6                   .dbfunc e GLCD_CheckStatus _GLCD_CheckStatus#Fhv fc 132
+ 02E6           ;            tmp -> R10
+                        .even
+ 02E6           _GLCD_CheckStatus#Fhv::
+ 02E6 AA92              st -y,R10
+ 02E8                   .dbblock 133
+ 02E8                   .dbline 135
+ 02E8 2224              clr R2
+ 02EA 2ABA              out 0x1a,R2
+ 02EC                   .dbline 137
+ 02EC 85B3              in R24,0x15
+ 02EE 897F              andi R24,249
+ 02F0 85BB              out 0x15,R24
+ 02F2                   .dbline 138
+ 02F2 E4DF              xcall _delay#Fvv
+ 02F4                   .dbline 139
+ 02F4 A9B2              in R10,0x19
+ 02F6                   .dbline 140
+ 02F6 8FEF              ldi R24,255
+ 02F8 8ABB              out 0x1a,R24
+ 02FA                   .dbline 141
+ 02FA 85B3              in R24,0x15
+ 02FC 8660              ori R24,6
+ 02FE 85BB              out 0x15,R24
+ 0300                   .dbline 142
+ 0300 0A2D              mov R16,R10
+ 0302                   .dbblkend 143
+ 0302           L42:
+ 0302 A990              ld R10,y+
+ 0304 0895              ret
+ 0306                   .dbfuncend
+ 0306                   .dbsym r tmp 10 c
+ 0306                   .dbstacksize -1
+ 0306                   .dbfunc e GLCD_WriteCommand _GLCD_WriteCommand#Fvh fV 149
+ 0306           ;        command -> R10
+                        .even
+ 0306           _GLCD_WriteCommand#Fvh::
+ 0306 AA92              st -y,R10
+ 0308 A02E              mov R10,R16
+ 030A                   .dbblock 150
+ 030A           L44:
+ 030A           L45:
+ 030A                   .dbline 151
+ 030A EDDF              xcall _GLCD_CheckStatus#Fhv
+ 030C 802F              mov R24,R16
+ 030E 8370              andi R24,3
+ 0310 E1F3              breq L44
+ 0312           X16:
+ 0312                   .dbline 152
+ 0312 ABBA              out 0x1b,R10
+ 0314                   .dbline 154
+ 0314 85B3              in R24,0x15
+ 0316 8A7F              andi R24,250
+ 0318 85BB              out 0x15,R24
+ 031A                   .dbline 155
+ 031A D0DF              xcall _delay#Fvv
+ 031C                   .dbline 156
+ 031C 85B3              in R24,0x15
+ 031E 8560              ori R24,5
+ 0320 85BB              out 0x15,R24
+ 0322                   .dbblkend 157
+ 0322           L43:
+ 0322 A990              ld R10,y+
+ 0324 0895              ret
+ 0326                   .dbfuncend
+ 0326                   .dbsym r command 10 c
+ 0326                   .dbstacksize -3
+ 0326                   .dbfunc e GLCD_WriteData _GLCD_WriteData#Fvh fV 164
+ 0326           ;           data -> R10
+                        .even
+ 0326           _GLCD_WriteData#Fvh::
+ 0326 AA92              st -y,R10
+ 0328 A02E              mov R10,R16
+ 032A                   .dbblock 165
+ 032A           L48:
+ 032A           L49:
+ 032A                   .dbline 166
+ 032A DDDF              xcall _GLCD_CheckStatus#Fhv
+ 032C 802F              mov R24,R16
+ 032E 8370              andi R24,3
+ 0330 E1F3              breq L48
+ 0332           X17:
+ 0332                   .dbline 167
+ 0332 ABBA              out 0x1b,R10
+ 0334                   .dbline 169
+ 0334 85B3              in R24,0x15
+ 0336 827F              andi R24,242
+ 0338 85BB              out 0x15,R24
+ 033A                   .dbline 170
+ 033A C0DF              xcall _delay#Fvv
+ 033C                   .dbline 171
+ 033C 85B3              in R24,0x15
+ 033E 8D60              ori R24,13
+ 0340 85BB              out 0x15,R24
+ 0342                   .dbblkend 172
+ 0342           L47:
+ 0342 A990              ld R10,y+
+ 0344 0895              ret
+ 0346                   .dbfuncend
+ 0346                   .dbsym r data 10 c
+ 0346                   .dbstacksize -3
+ 0346                   .dbfunc e GLCD_ReadData _GLCD_ReadData#Fhv fc 178
+ 0346           ;            tmp -> R10
+                        .even
+ 0346           _GLCD_ReadData#Fhv::
+ 0346 AA92              st -y,R10
+ 0348                   .dbblock 179
+ 0348           L52:
+ 0348           L53:
+ 0348                   .dbline 181
+ 0348 CEDF              xcall _GLCD_CheckStatus#Fhv
+ 034A 802F              mov R24,R16
+ 034C 8370              andi R24,3
+ 034E E1F3              breq L52
+ 0350           X18:
+ 0350                   .dbline 182
+ 0350 2224              clr R2
+ 0352 2ABA              out 0x1a,R2
+ 0354                   .dbline 184
+ 0354 85B3              in R24,0x15
+ 0356 817F              andi R24,241
+ 0358 85BB              out 0x15,R24
+ 035A                   .dbline 185
+ 035A B0DF              xcall _delay#Fvv
+ 035C                   .dbline 186
+ 035C A9B2              in R10,0x19
+ 035E                   .dbline 187
+ 035E 85B3              in R24,0x15
+ 0360 8E60              ori R24,14
+ 0362 85BB              out 0x15,R24
+ 0364                   .dbline 188
+ 0364 8FEF              ldi R24,255
+ 0366 8ABB              out 0x1a,R24
+ 0368                   .dbline 189
+ 0368 0A2D              mov R16,R10
+ 036A                   .dbblkend 190
+ 036A           L51:
+ 036A A990              ld R10,y+
+ 036C 0895              ret
+ 036E                   .dbfuncend
+ 036E                   .dbsym r tmp 10 c
+ 036E                   .dbstacksize -1
+ 036E                   .dbfunc e GLCD_SetAddressPointer _GLCD_SetAddressPointer#Fvj fV 196
+ 036E           ;        address -> R20,R21
+                        .even
+ 036E           _GLCD_SetAddressPointer#Fvj::
+ 036E 4A93              st -y,R20
+ 0370 5A93              st -y,R21
+ 0372 A801              movw R20,R16
+ 0374                   .dbblock 197
+ 0374                   .dbline 198
+ 0374 042F              mov R16,R20
+ 0376 0F7F              andi R16,255
+ 0378 D6DF              xcall _GLCD_WriteData#Fvh
+ 037A                   .dbline 199
+ 037A 8A01              movw R16,R20
+ 037C 012F              mov R16,R17
+ 037E 1127              clr R17
+ 0380 D2DF              xcall _GLCD_WriteData#Fvh
+ 0382                   .dbline 200
+ 0382 04E2              ldi R16,36
+ 0384 C0DF              xcall _GLCD_WriteCommand#Fvh
+ 0386                   .dbblkend 201
+ 0386           L55:
+ 0386 5991              ld R21,y+
+ 0388 4991              ld R20,y+
+ 038A 0895              ret
+ 038C                   .dbfuncend
+ 038C                   .dbsym r address 20 i
+ 038C                   .dbstacksize -2
+ 038C                   .dbfunc e GLCD_ClearText _GLCD_ClearText#Fvv fV 207
+ 038C           ;              i -> R20,R21
+                        .even
+ 038C           _GLCD_ClearText#Fvv::
+ 038C 4A93              st -y,R20
+ 038E 5A93              st -y,R21
+ 0390                   .dbblock 208
+ 0390                   .dbline 210
+ 0390 0027              clr R16
+ 0392 1127              clr R17
+ 0394 ECDF              xcall _GLCD_SetAddressPointer#Fvj
+ 0396                   .dbline 212
+ 0396 4427              clr R20
+ 0398 5527              clr R21
+ 039A           L57:
+ 039A                   .dbline 214
+ 039A 0027              clr R16
+ 039C BFD0              xcall _GLCD_WriteDisplayData#Fvh
+ 039E           L58:
+ 039E                   .dbline 212
+ 039E 4F5F              subi R20,255  ; offset = 1
+ 03A0 5F4F              sbci R21,255
+ 03A2                   .dbline 212
+ 03A2 80EE              ldi R24,480
+ 03A4 91E0              ldi R25,1
+ 03A6 4817              cp R20,R24
+ 03A8 5907              cpc R21,R25
+ 03AA BCF3              brlt L57
+ 03AC           X19:
+ 03AC                   .dbblkend 216
+ 03AC           L56:
+ 03AC 5991              ld R21,y+
+ 03AE 4991              ld R20,y+
+ 03B0 0895              ret
+ 03B2                   .dbfuncend
+ 03B2                   .dbsym r i 20 I
+ 03B2                   .dbstacksize 0
+ 03B2                   .dbfunc e GLCD_ClearCG _GLCD_ClearCG#Fvv fV 222
+ 03B2           ;              i -> R20,R21
+                        .even
+ 03B2           _GLCD_ClearCG#Fvv::
+ 03B2 4A93              st -y,R20
+ 03B4 5A93              st -y,R21
+ 03B6                   .dbblock 223
+ 03B6                   .dbline 225
+ 03B6 00E0              ldi R16,4096
+ 03B8 10E1              ldi R17,16
+ 03BA D9DF              xcall _GLCD_SetAddressPointer#Fvj
+ 03BC                   .dbline 227
+ 03BC 4427              clr R20
+ 03BE 5527              clr R21
+ 03C0 04C0              xjmp L65
+ 03C2           L62:
+ 03C2                   .dbline 229
+ 03C2 0027              clr R16
+ 03C4 ABD0              xcall _GLCD_WriteDisplayData#Fvh
+ 03C6           L63:
+ 03C6                   .dbline 227
+ 03C6 4F5F              subi R20,255  ; offset = 1
+ 03C8 5F4F              sbci R21,255
+ 03CA           L65:
+ 03CA                   .dbline 227
+ 03CA 80E0              ldi R24,2048
+ 03CC 98E0              ldi R25,8
+ 03CE 4817              cp R20,R24
+ 03D0 5907              cpc R21,R25
+ 03D2 B8F3              brlo L62
+ 03D4           X20:
+ 03D4                   .dbblkend 231
+ 03D4           L61:
+ 03D4 5991              ld R21,y+
+ 03D6 4991              ld R20,y+
+ 03D8 0895              ret
+ 03DA                   .dbfuncend
+ 03DA                   .dbsym r i 20 i
+ 03DA                   .dbstacksize 0
+ 03DA                   .dbfunc e GLCD_ClearGraphic _GLCD_ClearGraphic#Fvv fV 237
+ 03DA           ;              i -> R20,R21
+                        .even
+ 03DA           _GLCD_ClearGraphic#Fvv::
+ 03DA 4A93              st -y,R20
+ 03DC 5A93              st -y,R21
+ 03DE                   .dbblock 238
+ 03DE                   .dbline 240
+ 03DE 00EE              ldi R16,480
+ 03E0 11E0              ldi R17,1
+ 03E2 C5DF              xcall _GLCD_SetAddressPointer#Fvj
+ 03E4                   .dbline 241
+ 03E4 4427              clr R20
+ 03E6 5527              clr R21
+ 03E8           L67:
+ 03E8                   .dbline 243
+ 03E8 0027              clr R16
+ 03EA 98D0              xcall _GLCD_WriteDisplayData#Fvh
+ 03EC           L68:
+ 03EC                   .dbline 241
+ 03EC 4F5F              subi R20,255  ; offset = 1
+ 03EE 5F4F              sbci R21,255
+ 03F0                   .dbline 241
+ 03F0 80E0              ldi R24,3840
+ 03F2 9FE0              ldi R25,15
+ 03F4 4817              cp R20,R24
+ 03F6 5907              cpc R21,R25
+ 03F8 BCF3              brlt L67
+ 03FA           X21:
+ 03FA                   .dbblkend 245
+ 03FA           L66:
+ 03FA 5991              ld R21,y+
+ 03FC 4991              ld R20,y+
+ 03FE 0895              ret
+ 0400                   .dbfuncend
+ 0400                   .dbsym r i 20 I
+ 0400                   .dbstacksize 0
+ 0400                   .dbfunc e GLCD_WriteChar _GLCD_WriteChar#Fvc fV 251
+ 0400           ;       charCode -> R20
+                        .even
+ 0400           _GLCD_WriteChar#Fvc::
+ 0400 4A93              st -y,R20
+ 0402 402F              mov R20,R16
+ 0404                   .dbblock 252
+ 0404                   .dbline 253
+ 0404 042F              mov R16,R20
+ 0406 0052              subi R16,32
+ 0408 89D0              xcall _GLCD_WriteDisplayData#Fvh
+ 040A                   .dbblkend 254
+ 040A           L71:
+ 040A 4991              ld R20,y+
+ 040C 0895              ret
+ 040E                   .dbfuncend
+ 040E                   .dbsym r charCode 20 c
+ 040E                   .dbstacksize -3
+ 040E                   .dbfunc e GLCD_WriteString _GLCD_WriteString#FvPc fV 260
+ 040E           ;         string -> R10,R11
+                        .even
+ 040E           _GLCD_WriteString#FvPc::
+ 040E AA92              st -y,R10
+ 0410 BA92              st -y,R11
+ 0412 5801              movw R10,R16
+ 0414                   .dbblock 261
+ 0414                   .dbline 261
+ 0414 04C0              xjmp L74
+ 0416           L73:
+ 0416                   .dbline 264
+ 0416 F501              movw R30,R10
+ 0418 0191              ld R16,Z+
+ 041A 5F01              movw R10,R30
+ 041C F1DF              xcall _GLCD_WriteChar#Fvc
+ 041E           L74:
+ 041E                   .dbline 262
+ 041E F501              movw R30,R10
+ 0420 2080              ldd R2,z+0
+ 0422 2220              tst R2
+ 0424 C1F7              brne L73
+ 0426           X22:
+ 0426                   .dbblkend 266
+ 0426           L72:
+ 0426 B990              ld R11,y+
+ 0428 A990              ld R10,y+
+ 042A 0895              ret
+ 042C                   .dbfuncend
+ 042C                   .dbsym r string 10 pc
+ 042C                   .dbstacksize -2
+ 042C                   .dbfunc e GLCD_TextGoTo _GLCD_TextGoTo#Fvhh fV 273
+ 042C           ;        address -> R10,R11
+ 042C           ;              y -> R12
+ 042C           ;              x -> R10
+                        .even
+ 042C           _GLCD_TextGoTo#Fvhh::
+ 042C 0E940000          xcall push_xgset003C
+ 0430 C22E              mov R12,R18
+ 0432 A02E              mov R10,R16
+ 0434                   .dbblock 274
+ 0434                   .dbline 277
+ 0434 2C2D              mov R18,R12
+ 0436 3327              clr R19
+ 0438 0EE1              ldi R16,30
+ 043A 10E0              ldi R17,0
+ 043C 0E940000          xcall empy16s
+ 0440 2A2C              mov R2,R10
+ 0442 3324              clr R3
+ 0444 200E              add R2,R16
+ 0446 311E              adc R3,R17
+ 0448 5101              movw R10,R2
+ 044A                   .dbline 279
+ 044A 8101              movw R16,R2
+ 044C 90DF              xcall _GLCD_SetAddressPointer#Fvj
+ 044E                   .dbblkend 280
+ 044E           L76:
+ 044E 0C940000          xjmp pop_xgset003C
+ 0452 0895              ret
+ 0454                   .dbfuncend
+ 0454                   .dbsym r address 10 i
+ 0454                   .dbsym r y 12 c
+ 0454                   .dbsym r x 10 c
+ 0454                   .dbstacksize -2
+ 0454                   .dbfunc e GLCD_DefineCharacter _GLCD_DefineCharacter#FvhPh fV 286
+ 0454           ;        address -> R20,R21
+ 0454           ;              i -> R20
+ 0454           ;        defChar -> R10,R11
+ 0454           ;       charCode -> R12
+                        .even
+ 0454           _GLCD_DefineCharacter#FvhPh::
+ 0454 0E940000          xcall push_xgset303C
+ 0458 5901              movw R10,R18
+ 045A C02E              mov R12,R16
+ 045C                   .dbblock 287
+ 045C                   .dbline 291
+ 045C 4C2D              mov R20,R12
+ 045E 5527              clr R21
+ 0460 440F              lsl R20
+ 0462 551F              rol R21
+ 0464 440F              lsl R20
+ 0466 551F              rol R21
+ 0468 440F              lsl R20
+ 046A 551F              rol R21
+ 046C 4050              subi R20,0  ; offset = 4096
+ 046E 504F              sbci R21,240
+ 0470                   .dbline 293
+ 0470 8A01              movw R16,R20
+ 0472 7DDF              xcall _GLCD_SetAddressPointer#Fvj
+ 0474                   .dbline 295
+ 0474 4427              clr R20
+ 0476 07C0              xjmp L81
+ 0478           L78:
+ 0478                   .dbline 297
+ 0478 E42F              mov R30,R20
+ 047A FF27              clr R31
+ 047C EA0D              add R30,R10
+ 047E FB1D              adc R31,R11
+ 0480 0081              ldd R16,z+0
+ 0482 4CD0              xcall _GLCD_WriteDisplayData#Fvh
+ 0484           L79:
+ 0484                   .dbline 295
+ 0484 4395              inc R20
+ 0486           L81:
+ 0486                   .dbline 295
+ 0486 4830              cpi R20,8
+ 0488 B8F3              brlo L78
+ 048A           X23:
+ 048A                   .dbblkend 299
+ 048A           L77:
+ 048A 0C940000          xjmp pop_xgset303C
+ 048E 0895              ret
+ 0490                   .dbfuncend
+ 0490                   .dbsym r address 20 i
+ 0490                   .dbsym r i 20 c
+ 0490                   .dbsym r defChar 10 pc
+ 0490                   .dbsym r charCode 12 c
+ 0490                   .dbstacksize 0
+ 0490                   .dbfunc e GLCD_SetPixel _GLCD_SetPixel#Fvccc fV 306
+ 0490           ;        address -> R10,R11
+ 0490           ;            tmp -> R10
+ 0490           ;          color -> R14
+ 0490           ;              y -> R10
+ 0490           ;              x -> R12
+                        .even
+ 0490           _GLCD_SetPixel#Fvccc::
+ 0490 0E940000          xcall push_xgset00FC
+ 0494 A22E              mov R10,R18
+ 0496 C02E              mov R12,R16
+ 0498 EE80              ldd R14,y+6
+ 049A                   .dbblock 307
+ 049A                   .dbline 311
+ 049A 2A2D              mov R18,R10
+ 049C 3327              clr R19
+ 049E 0EE1              ldi R16,30
+ 04A0 10E0              ldi R17,0
+ 04A2 0E940000          xcall empy16s
+ 04A6 1801              movw R2,R16
+ 04A8 28E0              ldi R18,8
+ 04AA 30E0              ldi R19,0
+ 04AC 0C2D              mov R16,R12
+ 04AE 1127              clr R17
+ 04B0 0E940000          xcall div16s
+ 04B4 C801              movw R24,R16
+ 04B6 8052              subi R24,32  ; offset = 480
+ 04B8 9E4F              sbci R25,254
+ 04BA 5C01              movw R10,R24
+ 04BC A20C              add R10,R2
+ 04BE B31C              adc R11,R3
+ 04C0                   .dbline 313
+ 04C0 8501              movw R16,R10
+ 04C2 55DF              xcall _GLCD_SetAddressPointer#Fvj
+ 04C4                   .dbline 315
+ 04C4 05EC              ldi R16,197
+ 04C6 1FDF              xcall _GLCD_WriteCommand#Fvh
+ 04C8                   .dbline 316
+ 04C8 3EDF              xcall _GLCD_ReadData#Fhv
+ 04CA A02E              mov R10,R16
+ 04CC                   .dbline 318
+ 04CC EE20              tst R14
+ 04CE 81F0              breq L83
+ 04D0           X24:
+ 04D0                   .dbline 319
+ 04D0 28E0              ldi R18,8
+ 04D2 30E0              ldi R19,0
+ 04D4 0C2D              mov R16,R12
+ 04D6 1127              clr R17
+ 04D8 0E940000          xcall mod16s
+ 04DC 17E0              ldi R17,7
+ 04DE 101B              sub R17,R16
+ 04E0 2227              clr R18
+ 04E2 17FD              sbrc R17,7
+ 04E4 2095              com R18
+ 04E6 01E0              ldi R16,1
+ 04E8 0E940000          xcall lsl8
+ 04EC A02A              or R10,R16
+ 04EE 11C0              xjmp L84
+ 04F0           L83:
+ 04F0                   .dbline 321
+ 04F0 28E0              ldi R18,8
+ 04F2 30E0              ldi R19,0
+ 04F4 0C2D              mov R16,R12
+ 04F6 1127              clr R17
+ 04F8 0E940000          xcall mod16s
+ 04FC 17E0              ldi R17,7
+ 04FE 101B              sub R17,R16
+ 0500 2227              clr R18
+ 0502 17FD              sbrc R17,7
+ 0504 2095              com R18
+ 0506 01E0              ldi R16,1
+ 0508 0E940000          xcall lsl8
+ 050C 202E              mov R2,R16
+ 050E 2094              com R2
+ 0510 A220              and R10,R2
+ 0512           L84:
+ 0512                   .dbline 323
+ 0512 0A2D              mov R16,R10
+ 0514 03D0              xcall _GLCD_WriteDisplayData#Fvh
+ 0516                   .dbblkend 325
+ 0516           L82:
+ 0516 0C940000          xjmp pop_xgset00FC
+ 051A 0895              ret
+ 051C                   .dbfuncend
+ 051C                   .dbsym r address 10 i
+ 051C                   .dbsym r tmp 10 c
+ 051C                   .dbsym r color 14 c
+ 051C                   .dbsym r y 10 c
+ 051C                   .dbsym r x 12 c
+ 051C                   .dbstacksize 0
+ 051C                   .dbfunc e GLCD_WriteDisplayData _GLCD_WriteDisplayData#Fvh fV 331
+ 051C           ;              x -> R10
+                        .even
+ 051C           _GLCD_WriteDisplayData#Fvh::
+ 051C AA92              st -y,R10
+ 051E A02E              mov R10,R16
+ 0520                   .dbblock 332
+ 0520                   .dbline 333
+ 0520 0A2D              mov R16,R10
+ 0522 01DF              xcall _GLCD_WriteData#Fvh
+ 0524                   .dbline 334
+ 0524 00EC              ldi R16,192
+ 0526 EFDE              xcall _GLCD_WriteCommand#Fvh
+ 0528                   .dbblkend 335
+ 0528           L85:
+ 0528 A990              ld R10,y+
+ 052A 0895              ret
+ 052C                   .dbfuncend
+ 052C                   .dbsym r x 10 c
+ 052C                   .dbstacksize -3
+ 052C                   .dbfunc e GLCD_GraphicGoTo _GLCD_GraphicGoTo#Fvhh fV 341
+ 052C           ;        address -> R10,R11
+ 052C           ;              y -> R12
+ 052C           ;              x -> R10
+                        .even
+ 052C           _GLCD_GraphicGoTo#Fvhh::
+ 052C 0E940000          xcall push_xgset003C
+ 0530 C22E              mov R12,R18
+ 0532 A02E              mov R10,R16
+ 0534                   .dbblock 342
+ 0534                   .dbline 344
+ 0534 2C2D              mov R18,R12
+ 0536 3327              clr R19
+ 0538 0EE1              ldi R16,30
+ 053A 10E0              ldi R17,0
+ 053C 0E940000          xcall empy16s
+ 0540 1801              movw R2,R16
+ 0542 28E0              ldi R18,8
+ 0544 30E0              ldi R19,0
+ 0546 0A2D              mov R16,R10
+ 0548 1127              clr R17
+ 054A 0E940000          xcall div16s
+ 054E C801              movw R24,R16
+ 0550 8052              subi R24,32  ; offset = 480
+ 0552 9E4F              sbci R25,254
+ 0554 5C01              movw R10,R24
+ 0556 A20C              add R10,R2
+ 0558 B31C              adc R11,R3
+ 055A                   .dbline 345
+ 055A 8501              movw R16,R10
+ 055C 08DF              xcall _GLCD_SetAddressPointer#Fvj
+ 055E                   .dbblkend 346
+ 055E           L86:
+ 055E 0C940000          xjmp pop_xgset003C
+ 0562 0895              ret
+ 0564                   .dbfuncend
+ 0564                   .dbsym r address 10 i
+ 0564                   .dbsym r y 12 c
+ 0564                   .dbsym r x 10 c
+ 0564                   .dbstacksize -2
+ 0564                   .dbfunc e GLCD_Initialize _GLCD_Initialize#Fvv fV 353
+                        .even
+ 0564           _GLCD_Initialize#Fvv::
+ 0564                   .dbblock 354
+ 0564                   .dbline 355
+ 0564 B8DE              xcall _GLCD_InitializeInterface#Fvv
+ 0566                   .dbline 357
+ 0566 AC98              cbi 0x15,4
+ 0568                   .dbline 358
+ 0568 01E0              ldi R16,1
+ 056A 10E0              ldi R17,0
+ 056C 24D0              xcall _delay_ms#Fvj
+ 056E                   .dbline 359
+ 056E AC9A              sbi 0x15,4
+ 0570                   .dbline 362
+ 0570 AD98              cbi 0x15,5
+ 0572                   .dbline 365
+ 0572 00EE              ldi R16,224
+ 0574 D8DE              xcall _GLCD_WriteData#Fvh
+ 0576                   .dbline 366
+ 0576 01E0              ldi R16,1
+ 0578 D6DE              xcall _GLCD_WriteData#Fvh
+ 057A                   .dbline 367
+ 057A 02E4              ldi R16,66
+ 057C C4DE              xcall _GLCD_WriteCommand#Fvh
+ 057E                   .dbline 369
+ 057E 0EE1              ldi R16,30
+ 0580 D2DE              xcall _GLCD_WriteData#Fvh
+ 0582                   .dbline 370
+ 0582 0027              clr R16
+ 0584 D0DE              xcall _GLCD_WriteData#Fvh
+ 0586                   .dbline 371
+ 0586 03E4              ldi R16,67
+ 0588 BEDE              xcall _GLCD_WriteCommand#Fvh
+ 058A                   .dbline 373
+ 058A 0027              clr R16
+ 058C CCDE              xcall _GLCD_WriteData#Fvh
+ 058E                   .dbline 374
+ 058E 0027              clr R16
+ 0590 CADE              xcall _GLCD_WriteData#Fvh
+ 0592                   .dbline 375
+ 0592 00E4              ldi R16,64
+ 0594 B8DE              xcall _GLCD_WriteCommand#Fvh
+ 0596                   .dbline 377
+ 0596 0EE1              ldi R16,30
+ 0598 C6DE              xcall _GLCD_WriteData#Fvh
+ 059A                   .dbline 378
+ 059A 0027              clr R16
+ 059C C4DE              xcall _GLCD_WriteData#Fvh
+ 059E                   .dbline 379
+ 059E 01E4              ldi R16,65
+ 05A0 B2DE              xcall _GLCD_WriteCommand#Fvh
+ 05A2                   .dbline 381
+ 05A2 02E0              ldi R16,2
+ 05A4 C0DE              xcall _GLCD_WriteData#Fvh
+ 05A6                   .dbline 382
+ 05A6 0027              clr R16
+ 05A8 BEDE              xcall _GLCD_WriteData#Fvh
+ 05AA                   .dbline 383
+ 05AA 02E2              ldi R16,34
+ 05AC ACDE              xcall _GLCD_WriteCommand#Fvh
+ 05AE                   .dbline 385
+ 05AE 0CE9              ldi R16,156
+ 05B0 AADE              xcall _GLCD_WriteCommand#Fvh
+ 05B2                   .dbline 387
+ 05B2 00E8              ldi R16,128
+ 05B4                   .dbblkend 389
+ 05B4           L87:
+ 05B4 A8CE              xjmp _GLCD_WriteCommand#Fvh
+ 05B6                   .dbfuncend
+ 05B6                   .dbstacksize -2
+ 05B6                   .dbfunc e delay_ms _delay_ms#Fvj fV 391
+ 05B6           ;              i -> R20,R21
+ 05B6           ;              j -> R22,R23
+ 05B6           ;             ms -> R16,R17
+                        .even
+ 05B6           _delay_ms#Fvj::
+ 05B6 0E940000          xcall push_xgsetF000
+ 05BA                   .dbblock 392
+ 05BA                   .dbline 395
+ 05BA 4427              clr R20
+ 05BC 5527              clr R21
+ 05BE 0BC0              xjmp L92
+ 05C0           L89:
+ 05C0                   .dbline 396
+ 05C0 6627              clr R22
+ 05C2 7727              clr R23
+ 05C4           L93:
+ 05C4           L94:
+ 05C4                   .dbline 396
+ 05C4 6F5F              subi R22,255  ; offset = 1
+ 05C6 7F4F              sbci R23,255
+ 05C8                   .dbline 396
+ 05C8 84E3              ldi R24,2100
+ 05CA 98E0              ldi R25,8
+ 05CC 6817              cp R22,R24
+ 05CE 7907              cpc R23,R25
+ 05D0 CCF3              brlt L93
+ 05D2           X25:
+ 05D2           L90:
+ 05D2                   .dbline 395
+ 05D2 4F5F              subi R20,255  ; offset = 1
+ 05D4 5F4F              sbci R21,255
+ 05D6           L92:
+ 05D6                   .dbline 395
+ 05D6 4017              cp R20,R16
+ 05D8 5107              cpc R21,R17
+ 05DA 90F3              brlo L89
+ 05DC           X26:
+ 05DC                   .dbblkend 397
+ 05DC           L88:
+ 05DC 0C940000          xjmp pop_xgsetF000
+ 05E0 0895              ret
+ 05E2                   .dbfuncend
+ 05E2                   .dbsym r i 20 I
+ 05E2                   .dbsym r j 22 I
+ 05E2                   .dbsym r ms 16 i
+ 05E2                   .dbstacksize 0
+ 05E2                   .dbfunc e GLCD_Clear _GLCD_Clear#Fvv fV 399
+                        .even
+ 05E2           _GLCD_Clear#Fvv::
+ 05E2                   .dbblock 400
+ 05E2                   .dbline 401
+ 05E2 E7DE              xcall _GLCD_ClearCG#Fvv
+ 05E4                   .dbline 402
+ 05E4 FADE              xcall _GLCD_ClearGraphic#Fvv
+ 05E6                   .dbblkend 404
+ 05E6           L97:
+ 05E6 D2CE              xjmp _GLCD_ClearText#Fvv
+ 05E8                   .dbfuncend
+ 05E8                   .dbstacksize -2
+ 05E8                   .dbfile C:\avr\exhibition\exhibition1\main.c
+ 05E8                   .dbfunc e tx_char _tx_char#Fvh fV 20
+ 05E8           ;        tx_data -> R16
+                        .even
+ 05E8           _tx_char#Fvh::
+ 05E8                   .dbblock 21
+ 05E8           L99:
+ 05E8           L100:
+ 05E8                   .dbline 23
+ 05E8 5D9B              sbis 0xb,5
+ 05EA FECF              rjmp L99
+ 05EC           X27:
+ 05EC                   .dbline 24
+ 05EC 0CB9              out 0xc,R16
+ 05EE                   .dbblkend 25
+ 05EE           L98:
+ 05EE 0895              ret
+ 05F0                   .dbfuncend
+ 05F0                   .dbsym r tx_data 16 c
+ 05F0                   .dbstacksize -4
+ 05F0                   .dbfunc e tx_string _tx_string#FvPh fV 29
+ 05F0           ;       str_data -> R20,R21
+                        .even
+ 05F0           _tx_string#FvPh::
+ 05F0 4A93              st -y,R20
+ 05F2 5A93              st -y,R21
+ 05F4 A801              movw R20,R16
+ 05F6                   .dbblock 30
+ 05F6                   .dbline 30
+ 05F6 05C0              xjmp L104
+ 05F8           L103:
+ 05F8                   .dbline 32
+ 05F8 FA01              movw R30,R20
+ 05FA 0081              ldd R16,z+0
+ 05FC F5DF              xcall _tx_char#Fvh
+ 05FE                   .dbline 33
+ 05FE 4F5F              subi R20,255  ; offset = 1
+ 0600 5F4F              sbci R21,255
+ 0602           L104:
+ 0602                   .dbline 31
+ 0602 FA01              movw R30,R20
+ 0604 2080              ldd R2,z+0
+ 0606 2220              tst R2
+ 0608 B9F7              brne L103
+ 060A           X28:
+ 060A                   .dbblkend 35
+ 060A           L102:
+ 060A 5991              ld R21,y+
+ 060C 4991              ld R20,y+
+ 060E 0895              ret
+ 0610                   .dbfuncend
+ 0610                   .dbsym r str_data 20 pc
+ 0610                   .dbstacksize -2
+ 0610                   .dbfunc e Bluetooth _Bluetooth#Fvv fV 37
+                        .even
+ 0610           _Bluetooth#Fvv::
+ 0610           	.nocc_start
+ 0610 2A92              st -y,R2
+ 0612 2FB6              IN R2,63
+ 0614 2A92              st -y,R2
+ 0616                   .dbblock 38
+ 0616                   .dbline 39
+ 0616 2CB0              in R2,0xc
+ 0618 20920200          sts _flag#c,R2
+ 061C                   .dbblkend 40
+ 061C           L106:
+ 061C 2990              ld R2,y+
+ 061E 2FBE              OUT 63,R2
+ 0620 2990              ld R2,y+
+ 0622           	.nocc_end
+ 0622 1895              reti
+ 0624                   .dbfuncend
+ 0624                   .dbstacksize 0
+ 0624                   .dbfunc e GLCD_select _GLCD_select#Fvhh fV 41
+ 0624           ;              j -> R20
+ 0624           ;              i -> R22
+ 0624           ;              y -> R12
+ 0624           ;              x -> R10
+                        .even
+ 0624           _GLCD_select#Fvhh::
+ 0624 0E940000          xcall push_xgsetF03C
+ 0628 C22E              mov R12,R18
+ 062A A02E              mov R10,R16
+ 062C 2197              sbiw R28,1
+ 062E                   .dbblock 42
+ 062E                   .dbline 45
+ 062E 4427              clr R20
+ 0630 0DC0              xjmp L111
+ 0632           L108:
+ 0632                   .dbline 46
+ 0632 6627              clr R22
+ 0634 08C0              xjmp L115
+ 0636           L112:
+ 0636                   .dbline 48
+ 0636 81E0              ldi R24,1
+ 0638 8883              std y+0,R24
+ 063A 2C2D              mov R18,R12
+ 063C 260F              add R18,R22
+ 063E 0A2D              mov R16,R10
+ 0640 040F              add R16,R20
+ 0642 26DF              xcall _GLCD_SetPixel#Fvccc
+ 0644           L113:
+ 0644                   .dbline 46
+ 0644 6395              inc R22
+ 0646           L115:
+ 0646                   .dbline 46
+ 0646 6830              cpi R22,8
+ 0648 B0F3              brlo L112
+ 064A           X29:
+ 064A           L109:
+ 064A                   .dbline 45
+ 064A 4395              inc R20
+ 064C           L111:
+ 064C                   .dbline 45
+ 064C 4830              cpi R20,8
+ 064E 88F3              brlo L108
+ 0650           X30:
+ 0650                   .dbline 50
+ 0650 04E6              ldi R16,100
+ 0652 10E0              ldi R17,0
+ 0654 B0DF              xcall _delay_ms#Fvj
+ 0656                   .dbblkend 51
+ 0656           L107:
+ 0656 2196              adiw R28,1
+ 0658 0C940000          xjmp pop_xgsetF03C
+ 065C 0895              ret
+ 065E                   .dbfuncend
+ 065E                   .dbsym r j 20 c
+ 065E                   .dbsym r i 22 c
+ 065E                   .dbsym r y 12 c
+ 065E                   .dbsym r x 10 c
+ 065E                   .dbstacksize 3
+ 065E                   .dbfunc e GLCD_dselect _GLCD_dselect#Fvhh fV 53
+ 065E           ;              j -> R20
+ 065E           ;              i -> R22
+ 065E           ;              y -> R12
+ 065E           ;              x -> R10
+                        .even
+ 065E           _GLCD_dselect#Fvhh::
+ 065E 0E940000          xcall push_xgsetF03C
+ 0662 C22E              mov R12,R18
+ 0664 A02E              mov R10,R16
+ 0666 2197              sbiw R28,1
+ 0668                   .dbblock 54
+ 0668                   .dbline 56
+ 0668 4427              clr R20
+ 066A 0DC0              xjmp L120
+ 066C           L117:
+ 066C                   .dbline 57
+ 066C 6627              clr R22
+ 066E 08C0              xjmp L124
+ 0670           L121:
+ 0670                   .dbline 59
+ 0670 2224              clr R2
+ 0672 2882              std y+0,R2
+ 0674 2C2D              mov R18,R12
+ 0676 260F              add R18,R22
+ 0678 0A2D              mov R16,R10
+ 067A 040F              add R16,R20
+ 067C 09DF              xcall _GLCD_SetPixel#Fvccc
+ 067E           L122:
+ 067E                   .dbline 57
+ 067E 6395              inc R22
+ 0680           L124:
+ 0680                   .dbline 57
+ 0680 6830              cpi R22,8
+ 0682 B0F3              brlo L121
+ 0684           X31:
+ 0684           L118:
+ 0684                   .dbline 56
+ 0684 4395              inc R20
+ 0686           L120:
+ 0686                   .dbline 56
+ 0686 4830              cpi R20,8
+ 0688 88F3              brlo L117
+ 068A           X32:
+ 068A                   .dbline 61
+ 068A 04E6              ldi R16,100
+ 068C 10E0              ldi R17,0
+ 068E 93DF              xcall _delay_ms#Fvj
+ 0690                   .dbblkend 62
+ 0690           L116:
+ 0690 2196              adiw R28,1
+ 0692 0C940000          xjmp pop_xgsetF03C
+ 0696 0895              ret
+ 0698                   .dbfuncend
+ 0698                   .dbsym r j 20 c
+ 0698                   .dbsym r i 22 c
+ 0698                   .dbsym r y 12 c
+ 0698                   .dbsym r x 10 c
+ 0698                   .dbstacksize 3
+ 0698                   .dbfunc e up _up#Fvv fV 65
+                        .even
+ 0698           _up#Fvv::
+ 0698           	.nocc_start
+ 0698 0A92              st -y,R0
+ 069A 1A92              st -y,R1
+ 069C 2A92              st -y,R2
+ 069E 3A92              st -y,R3
+ 06A0 4A92              st -y,R4
+ 06A2 5A92              st -y,R5
+ 06A4 6A92              st -y,R6
+ 06A6 7A92              st -y,R7
+ 06A8 8A92              st -y,R8
+ 06AA 9A92              st -y,R9
+ 06AC 0A93              st -y,R16
+ 06AE 1A93              st -y,R17
+ 06B0 2A93              st -y,R18
+ 06B2 3A93              st -y,R19
+ 06B4 8A93              st -y,R24
+ 06B6 9A93              st -y,R25
+ 06B8 AA93              st -y,R26
+ 06BA BA93              st -y,R27
+ 06BC EA93              st -y,R30
+ 06BE FA93              st -y,R31
+ 06C0 0FB6              IN R0,63
+ 06C2 0A92              st -y,R0
+ 06C4                   .dbblock 66
+ 06C4                   .dbline 67
+ 06C4 F894              bclr 7
+ 06C6                   .dbline 68
+ 06C6 20910300          lds R18,_y#Vi
+ 06CA 00910100          lds R16,_x#Vi
+ 06CE C7DF              xcall _GLCD_dselect#Fvhh
+ 06D0                   .dbline 69
+ 06D0 80910300          lds R24,_y#Vi
+ 06D4 90910400          lds R25,_y#Vi+1
+ 06D8 0B97              sbiw R24,11
+ 06DA 90930400          sts _y#Vi+1,R25
+ 06DE 80930300          sts _y#Vi,R24
+ 06E2                   .dbline 70
+ 06E2 80910300          lds R24,_y#Vi
+ 06E6 90910400          lds R25,_y#Vi+1
+ 06EA 8331              cpi R24,19
+ 06EC E0E0              ldi R30,0
+ 06EE 9E07              cpc R25,R30
+ 06F0 34F4              brge L126
+ 06F2           X33:
+ 06F2                   .dbline 70
+ 06F2 86E7              ldi R24,118
+ 06F4 90E0              ldi R25,0
+ 06F6 90930400          sts _y#Vi+1,R25
+ 06FA 80930300          sts _y#Vi,R24
+ 06FE           L126:
+ 06FE                   .dbline 72
+ 06FE 20910300          lds R18,_y#Vi
+ 0702 00910100          lds R16,_x#Vi
+ 0706 8EDF              xcall _GLCD_select#Fvhh
+ 0708                   .dbline 73
+ 0708 0CE2              ldi R16,300
+ 070A 11E0              ldi R17,1
+ 070C 54DF              xcall _delay_ms#Fvj
+ 070E                   .dbblkend 74
+ 070E           L125:
+ 070E 0990              ld R0,y+
+ 0710 0FBE              OUT 63,R0
+ 0712 F991              ld R31,y+
+ 0714 E991              ld R30,y+
+ 0716 B991              ld R27,y+
+ 0718 A991              ld R26,y+
+ 071A 9991              ld R25,y+
+ 071C 8991              ld R24,y+
+ 071E 3991              ld R19,y+
+ 0720 2991              ld R18,y+
+ 0722 1991              ld R17,y+
+ 0724 0991              ld R16,y+
+ 0726 9990              ld R9,y+
+ 0728 8990              ld R8,y+
+ 072A 7990              ld R7,y+
+ 072C 6990              ld R6,y+
+ 072E 5990              ld R5,y+
+ 0730 4990              ld R4,y+
+ 0732 3990              ld R3,y+
+ 0734 2990              ld R2,y+
+ 0736 1990              ld R1,y+
+ 0738 0990              ld R0,y+
+ 073A           	.nocc_end
+ 073A 1895              reti
+ 073C                   .dbfuncend
+ 073C                   .dbstacksize 19
+ 073C                   .dbfunc e down _down#Fvv fV 76
+                        .even
+ 073C           _down#Fvv::
+ 073C           	.nocc_start
+ 073C 0A92              st -y,R0
+ 073E 1A92              st -y,R1
+ 0740 2A92              st -y,R2
+ 0742 3A92              st -y,R3
+ 0744 4A92              st -y,R4
+ 0746 5A92              st -y,R5
+ 0748 6A92              st -y,R6
+ 074A 7A92              st -y,R7
+ 074C 8A92              st -y,R8
+ 074E 9A92              st -y,R9
+ 0750 0A93              st -y,R16
+ 0752 1A93              st -y,R17
+ 0754 2A93              st -y,R18
+ 0756 3A93              st -y,R19
+ 0758 8A93              st -y,R24
+ 075A 9A93              st -y,R25
+ 075C AA93              st -y,R26
+ 075E BA93              st -y,R27
+ 0760 EA93              st -y,R30
+ 0762 FA93              st -y,R31
+ 0764 0FB6              IN R0,63
+ 0766 0A92              st -y,R0
+ 0768                   .dbblock 77
+ 0768                   .dbline 78
+ 0768 F894              bclr 7
+ 076A                   .dbline 79
+ 076A 20910300          lds R18,_y#Vi
+ 076E 00910100          lds R16,_x#Vi
+ 0772 75DF              xcall _GLCD_dselect#Fvhh
+ 0774                   .dbline 80
+ 0774 80910300          lds R24,_y#Vi
+ 0778 90910400          lds R25,_y#Vi+1
+ 077C 0B96              adiw R24,11
+ 077E 90930400          sts _y#Vi+1,R25
+ 0782 80930300          sts _y#Vi,R24
+ 0786                   .dbline 81
+ 0786 86E7              ldi R24,118
+ 0788 90E0              ldi R25,0
+ 078A 20900300          lds R2,_y#Vi
+ 078E 30900400          lds R3,_y#Vi+1
+ 0792 8215              cp R24,R2
+ 0794 9305              cpc R25,R3
+ 0796 2CF4              brge L129
+ 0798           X34:
+ 0798                   .dbline 81
+ 0798 83E1              ldi R24,19
+ 079A 90930400          sts _y#Vi+1,R25
+ 079E 80930300          sts _y#Vi,R24
+ 07A2           L129:
+ 07A2                   .dbline 83
+ 07A2 20910300          lds R18,_y#Vi
+ 07A6 00910100          lds R16,_x#Vi
+ 07AA 3CDF              xcall _GLCD_select#Fvhh
+ 07AC                   .dbline 84
+ 07AC 0CE2              ldi R16,300
+ 07AE 11E0              ldi R17,1
+ 07B0 02DF              xcall _delay_ms#Fvj
+ 07B2                   .dbblkend 85
+ 07B2           L128:
+ 07B2 0990              ld R0,y+
+ 07B4 0FBE              OUT 63,R0
+ 07B6 F991              ld R31,y+
+ 07B8 E991              ld R30,y+
+ 07BA B991              ld R27,y+
+ 07BC A991              ld R26,y+
+ 07BE 9991              ld R25,y+
+ 07C0 8991              ld R24,y+
+ 07C2 3991              ld R19,y+
+ 07C4 2991              ld R18,y+
+ 07C6 1991              ld R17,y+
+ 07C8 0991              ld R16,y+
+ 07CA 9990              ld R9,y+
+ 07CC 8990              ld R8,y+
+ 07CE 7990              ld R7,y+
+ 07D0 6990              ld R6,y+
+ 07D2 5990              ld R5,y+
+ 07D4 4990              ld R4,y+
+ 07D6 3990              ld R3,y+
+ 07D8 2990              ld R2,y+
+ 07DA 1990              ld R1,y+
+ 07DC 0990              ld R0,y+
+ 07DE           	.nocc_end
+ 07DE 1895              reti
+ 07E0                   .dbfuncend
+ 07E0                   .dbstacksize 19
+ 07E0                   .dbfunc e right _right#Fvv fV 87
+                        .even
+ 07E0           _right#Fvv::
+ 07E0           	.nocc_start
+ 07E0 0A92              st -y,R0
+ 07E2 1A92              st -y,R1
+ 07E4 2A92              st -y,R2
+ 07E6 3A92              st -y,R3
+ 07E8 4A92              st -y,R4
+ 07EA 5A92              st -y,R5
+ 07EC 6A92              st -y,R6
+ 07EE 7A92              st -y,R7
+ 07F0 8A92              st -y,R8
+ 07F2 9A92              st -y,R9
+ 07F4 0A93              st -y,R16
+ 07F6 1A93              st -y,R17
+ 07F8 2A93              st -y,R18
+ 07FA 3A93              st -y,R19
+ 07FC 8A93              st -y,R24
+ 07FE 9A93              st -y,R25
+ 0800 AA93              st -y,R26
+ 0802 BA93              st -y,R27
+ 0804 EA93              st -y,R30
+ 0806 FA93              st -y,R31
+ 0808 0FB6              IN R0,63
+ 080A 0A92              st -y,R0
+ 080C                   .dbblock 88
+ 080C                   .dbline 89
+ 080C F894              bclr 7
+ 080E                   .dbline 90
+ 080E 20910300          lds R18,_y#Vi
+ 0812 00910100          lds R16,_x#Vi
+ 0816 23DF              xcall _GLCD_dselect#Fvhh
+ 0818                   .dbline 91
+ 0818 80910100          lds R24,_x#Vi
+ 081C 90910200          lds R25,_x#Vi+1
+ 0820 0B96              adiw R24,11
+ 0822 90930200          sts _x#Vi+1,R25
+ 0826 80930100          sts _x#Vi,R24
+ 082A                   .dbline 92
+ 082A 85EA              ldi R24,165
+ 082C 90E0              ldi R25,0
+ 082E 20900100          lds R2,_x#Vi
+ 0832 30900200          lds R3,_x#Vi+1
+ 0836 8215              cp R24,R2
+ 0838 9305              cpc R25,R3
+ 083A 2CF4              brge L132
+ 083C           X35:
+ 083C                   .dbline 92
+ 083C 82E4              ldi R24,66
+ 083E 90930200          sts _x#Vi+1,R25
+ 0842 80930100          sts _x#Vi,R24
+ 0846           L132:
+ 0846                   .dbline 94
+ 0846 20910300          lds R18,_y#Vi
+ 084A 00910100          lds R16,_x#Vi
+ 084E EADE              xcall _GLCD_select#Fvhh
+ 0850                   .dbline 95
+ 0850 0CE2              ldi R16,300
+ 0852 11E0              ldi R17,1
+ 0854 B0DE              xcall _delay_ms#Fvj
+ 0856                   .dbblkend 96
+ 0856           L131:
+ 0856 0990              ld R0,y+
+ 0858 0FBE              OUT 63,R0
+ 085A F991              ld R31,y+
+ 085C E991              ld R30,y+
+ 085E B991              ld R27,y+
+ 0860 A991              ld R26,y+
+ 0862 9991              ld R25,y+
+ 0864 8991              ld R24,y+
+ 0866 3991              ld R19,y+
+ 0868 2991              ld R18,y+
+ 086A 1991              ld R17,y+
+ 086C 0991              ld R16,y+
+ 086E 9990              ld R9,y+
+ 0870 8990              ld R8,y+
+ 0872 7990              ld R7,y+
+ 0874 6990              ld R6,y+
+ 0876 5990              ld R5,y+
+ 0878 4990              ld R4,y+
+ 087A 3990              ld R3,y+
+ 087C 2990              ld R2,y+
+ 087E 1990              ld R1,y+
+ 0880 0990              ld R0,y+
+ 0882           	.nocc_end
+ 0882 1895              reti
+ 0884                   .dbfuncend
+ 0884                   .dbstacksize 19
+ 0884                   .dbfunc e left _left#Fvv fV 98
+                        .even
+ 0884           _left#Fvv::
+ 0884           	.nocc_start
+ 0884 0A92              st -y,R0
+ 0886 1A92              st -y,R1
+ 0888 2A92              st -y,R2
+ 088A 3A92              st -y,R3
+ 088C 4A92              st -y,R4
+ 088E 5A92              st -y,R5
+ 0890 6A92              st -y,R6
+ 0892 7A92              st -y,R7
+ 0894 8A92              st -y,R8
+ 0896 9A92              st -y,R9
+ 0898 0A93              st -y,R16
+ 089A 1A93              st -y,R17
+ 089C 2A93              st -y,R18
+ 089E 3A93              st -y,R19
+ 08A0 8A93              st -y,R24
+ 08A2 9A93              st -y,R25
+ 08A4 AA93              st -y,R26
+ 08A6 BA93              st -y,R27
+ 08A8 EA93              st -y,R30
+ 08AA FA93              st -y,R31
+ 08AC 0FB6              IN R0,63
+ 08AE 0A92              st -y,R0
+ 08B0                   .dbblock 99
+ 08B0                   .dbline 100
+ 08B0 F894              bclr 7
+ 08B2                   .dbline 101
+ 08B2 20910300          lds R18,_y#Vi
+ 08B6 00910100          lds R16,_x#Vi
+ 08BA D1DE              xcall _GLCD_dselect#Fvhh
+ 08BC                   .dbline 102
+ 08BC 80910100          lds R24,_x#Vi
+ 08C0 90910200          lds R25,_x#Vi+1
+ 08C4 0B97              sbiw R24,11
+ 08C6 90930200          sts _x#Vi+1,R25
+ 08CA 80930100          sts _x#Vi,R24
+ 08CE                   .dbline 103
+ 08CE 80910100          lds R24,_x#Vi
+ 08D2 90910200          lds R25,_x#Vi+1
+ 08D6 8234              cpi R24,66
+ 08D8 E0E0              ldi R30,0
+ 08DA 9E07              cpc R25,R30
+ 08DC 34F4              brge L135
+ 08DE           X36:
+ 08DE                   .dbline 103
+ 08DE 85EA              ldi R24,165
+ 08E0 90E0              ldi R25,0
+ 08E2 90930200          sts _x#Vi+1,R25
+ 08E6 80930100          sts _x#Vi,R24
+ 08EA           L135:
+ 08EA                   .dbline 105
+ 08EA 20910300          lds R18,_y#Vi
+ 08EE 00910100          lds R16,_x#Vi
+ 08F2 98DE              xcall _GLCD_select#Fvhh
+ 08F4                   .dbline 106
+ 08F4 0CE2              ldi R16,300
+ 08F6 11E0              ldi R17,1
+ 08F8 5EDE              xcall _delay_ms#Fvj
+ 08FA                   .dbblkend 107
+ 08FA           L134:
+ 08FA 0990              ld R0,y+
+ 08FC 0FBE              OUT 63,R0
+ 08FE F991              ld R31,y+
+ 0900 E991              ld R30,y+
+ 0902 B991              ld R27,y+
+ 0904 A991              ld R26,y+
+ 0906 9991              ld R25,y+
+ 0908 8991              ld R24,y+
+ 090A 3991              ld R19,y+
+ 090C 2991              ld R18,y+
+ 090E 1991              ld R17,y+
+ 0910 0991              ld R16,y+
+ 0912 9990              ld R9,y+
+ 0914 8990              ld R8,y+
+ 0916 7990              ld R7,y+
+ 0918 6990              ld R6,y+
+ 091A 5990              ld R5,y+
+ 091C 4990              ld R4,y+
+ 091E 3990              ld R3,y+
+ 0920 2990              ld R2,y+
+ 0922 1990              ld R1,y+
+ 0924 0990              ld R0,y+
+ 0926           	.nocc_end
+ 0926 1895              reti
+ 0928                   .dbfuncend
+ 0928                   .dbstacksize 19
+ 0928                   .dbfunc e main _main#Fiv fI 110
+ 0928           ;              i -> R10,R11
+                        .even
+ 0928           _main#Fiv::
+ 0928                   .dbblock 111
+ 0928                   .dbline 112
+ 0928 2224              clr R2
+ 092A 21BA              out 0x11,R2
+ 092C                   .dbline 113
+ 092C 8FEF              ldi R24,255
+ 092E 8ABB              out 0x1a,R24
+ 0930                   .dbline 114
+ 0930 82E0              ldi R24,2
+ 0932 8BB9              out 0xb,R24
+ 0934                   .dbline 115
+ 0934 88E9              ldi R24,152
+ 0936 8AB9              out 0xa,R24
+ 0938                   .dbline 116
+ 0938 86E0              ldi R24,6
+ 093A 80939500          sts 149,R24
+ 093E                   .dbline 117
+ 093E 8EEF              ldi R24,254
+ 0940 82B9              out 0x2,R24
+ 0942                   .dbline 118
+ 0942 20900900          lds R2,_baudrate#A15_j+4
+ 0946 30900A00          lds R3,_baudrate#A15_j+4+1
+ 094A 232C              mov R2,R3
+ 094C 3324              clr R3
+ 094E 20929000          sts 144,R2
+ 0952                   .dbline 119
+ 0952 20900900          lds R2,_baudrate#A15_j+4
+ 0956 29B8              out 0x9,R2
+ 0958                   .dbline 120
+ 0958 8FE1              ldi R24,31
+ 095A 89BF              out 0x39,R24
+ 095C                   .dbline 121
+ 095C 8AEA              ldi R24,170
+ 095E 80936A00          sts 106,R24
+ 0962                   .dbline 122
+ 0962 82E0              ldi R24,2
+ 0964 8ABF              out 0x3a,R24
+ 0966                   .dbline 123
+ 0966 7894              bset 7
+ 0968                   .dbblock 125
+ 0968                   .dbline 125
+ 0968 AA24              clr R10
+ 096A BB24              clr R11
+ 096C                   .dbline 126
+ 096C FBDD              xcall _GLCD_Initialize#Fvv
+ 096E                   .dbline 127
+ 096E 39DE              xcall _GLCD_Clear#Fvv
+ 0970                   .dbline 128
+ 0970 80E0              ldi R24,<_140#A5_c
+ 0972 90E0              ldi R25,>_140#A5_c
+ 0974 90930100          sts _BUFF#Pc+1,R25
+ 0978 80930000          sts _BUFF#Pc,R24
+ 097C 05C0              xjmp L142
+ 097E           L141:
+ 097E                   .dbline 131
+ 097E 00910000          lds R16,_BUFF#Pc
+ 0982 10910100          lds R17,_BUFF#Pc+1
+ 0986 34DE              xcall _tx_string#FvPh
+ 0988           L142:
+ 0988                   .dbline 129
+ 0988 FACF              xjmp L141
+ 098A           X37:
+ 098A                   .dbblkend 134
+ 098A                   .dbblkend 134
+ 098A           L137:
+ 098A 0895              ret
+ 098C                   .dbfuncend
+ 098C                   .dbsym r i 10 I
+ 098C                   .dbstacksize -2
+                        .area  func_lit(rom, con, rel)
+ 0000                   .dbstruct 0 18 tm
+ 0000                   .dbfield 0 tm_sec I
+ 0000                   .dbfield 2 tm_min I
+ 0000                   .dbfield 4 tm_hour I
+ 0000                   .dbfield 6 tm_mday I
+ 0000                   .dbfield 8 tm_mon I
+ 0000                   .dbfield 10 tm_year I
+ 0000                   .dbfield 12 tm_wday I
+ 0000                   .dbfield 14 tm_yday I
+ 0000                   .dbfield 16 tm_isdst I
+ 0000                   .dbend
+                        .area text(rom, con, rel)
+ 098C                   .dbfile C:\avr\exhibition\exhibition1\main.c
+                        .area bss(ram, con, rel)
+ 0000                   .dbfile C:\avr\exhibition\exhibition1\main.c
+ 0000           _BUFF#Pc::
+ 0000                   .blkb 2
+ 0002                   .dbsym e BUFF _BUFF#Pc pc
+ 0002           _flag#c::
+ 0002                   .blkb 1
+ 0003                   .dbsym e flag _flag#c c
+                        .area data(ram, con, rel)
+ 0023                   .dbfile C:\avr\exhibition\exhibition1\main.c
+ 0023           _140#A5_c:
+ 0023                   .blkb 5
+                        .area idata(rom)
+ 0023 626C756500        .byte 'b,'l,'u,'e,0
+                        .area data(ram, con, rel)
+ 0028                   .dbfile C:\avr\exhibition\exhibition1\main.c
